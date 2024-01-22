@@ -123,11 +123,11 @@
 
         </div>
     </div>
-    <div class="page-top-group  at-index ">
+    <!-- <div class="page-top-group  at-index ">
         <a href="/thao-luan/2591">
             <div class="index-background d-none d-lg-block" style="background-image: url('/images/banners/fbg_d.jpg')">
             </div>
             <div class="index-background d-lg-none" style="background-image: url('/images/banners/fbg_m.jpg'); background-size: cover"></div>
         </a>
     </div>
-    <main id="mainpart" class="at-index">
+    <main id="mainpart" class="at-index"> -->
