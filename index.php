@@ -1,10 +1,11 @@
 <?php
 require "./env.php";
 require "./config.php";
-require_once __DIR__. "/vendor/autoload.php";
+require_once __DIR__ . "/vendor/autoload.php";
 
 
-use App\Models\ProductModel;
+use App\Models\TruyenModel;
+use App\Models\ChuongModel;
 
 // ProductModel::delete(3);
 /*
@@ -22,15 +23,40 @@ CREATE TABLE Truyen (
 );
 dựa vào database trên thêm dữ liệu vào data
 */
-$data=[
-    'TieuDe'=>'The Last of us',
-    'MaTacGia'=>1,
-    'MoTa'=>"In the year 2047, humanity has colon
-    established a new world on Mars. The United Nations Space Agency is in charge of governing this
-    planet and its resources. But when a group of rebels discovers that they are not alone
-    on Mars, they begin to question everything.",
-    'LuotXem'=>100,
-    'LuotThich'=>56,
-    'DanhGia'=>9.8
-    ]; 
-$product->add($data);
+// print_r($product->all());
+$Truyen = new TruyenModel();
+$allchuong = new ChuongModel();
+
+if (isset($_GET['action'])) {
+    $act = $_GET["action"];
+} else $act = "";
+switch ($act) {
+    case "":
+        include "app/view/headder.php";
+        // include "app/view/noibat_thaoluan_lichsu.php";
+        include "app/view/list.php";
+        break;
+    case "GTtruyen":
+        //kiểm tra xem matruyen có tồn tại không và gắn giá trị mã truyện cho biến idtruyen
+        if (isset($_GET['matruyen'])) {
+            $idtruyen = $_GET['matruyen'];
+            $oneTruyen=(array)$Truyen->find('MaTruyen',$idtruyen);
+            $chuong=$allchuong->find('MaTruyen',$idtruyen);
+        } else {
+            echo "<script>window.location='index.php'</script>";
+        }
+        include "app/view/header_nobanner.php";
+        include "app/view/gioithieutruyen.php";
+        break;
+    case "Doctruyen":
+        if(isset($_GET['chuong'],$_GET['matruyen'])){
+            $idtruyen = $_GET['matruyen'];
+            include "app/view/header_nobanner.php";
+            $chuong= $allchuong->find('MaTruyen',$idtruyen);
+            include "app/view/chuongtruyen.php";
+            }
+    default:
+    include "app/view/header_nobanner.php";
+    
+}
+include "app/view/footer.php";
