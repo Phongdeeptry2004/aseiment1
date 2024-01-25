@@ -117,7 +117,7 @@
 
                                 <!-- start truyện -->
                                 <?php
-                            foreach ($Truyen->all() as $item) :
+                            foreach ($data as $item) :
                                 ?>
                                 <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
                                     <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_<?php echo $item->MaTruyen ?>">
@@ -132,7 +132,7 @@
                                         <div class="thumb-detail">
                                             <div class="thumb_attr chapter-title"
                                                 title="<?php echo $item->TieuDe?>"><a
-                                                    href="index.php?action=matruyen&matruyen=<?php echo $item->MaTruyen ?>"
+                                                    href="/truyen?matruyen=<?php echo $item->MaTruyen ?>"
                                                     title="<?php echo $item->TieuDe?>"><?php echo $item->TieuDe?></a></div>
                                             <div class="thumb_attr volume-title">tên vol</div>
                                         </div>
@@ -221,14 +221,6 @@
     <script src="js/livewire.js?id=f121a5df" data-csrf="JoNcZmuuKY5zfGqNxWzSaNqi7i9s4OyOIq0SDmrU"
         data-update-uri="/livewire/update" data-navigate-once="true"></script>
     <script type="text/javascript" src="js/d56b4bd6c3d2c1e161c4ab3c78c27670.js"></script>
-    <footer id="footer">
-        <div class="container">
-
-            <span class="right">Liên hệ: <a href="mailto:contact@hako.vn" target="_blank"
-                    style="color: #5fff46">contact@hako.vn</a></span>
-            <span>© 2016 - 2024 Cổng Light Novel - Đọc Light Novel</span>
-        </div>
-    </footer>
     <div x-data x-show="$store.toast.on" @click="$store.toast.hide()"
         class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md fixed w-3/4 md:w-1/2 z-20 inset-x-0 bottom-10 mx-auto"
         role="alert" style="display: none">
