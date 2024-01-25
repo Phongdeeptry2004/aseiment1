@@ -54,7 +54,7 @@ class BaseModel
             return $result[0];
         } elseif ($count > 1) {
             return $result;
-        } 
+        }
     }
     //phương thức có điều kiện
     //$ colum là tên cột 
@@ -130,12 +130,22 @@ class BaseModel
     $id : Giá trị của khoá chính 
     $data : Mảng dữ liệu cần nhập , phải đưuocj thiết kế có ket và value
     */
-    public function update($id,$data){
-        $this->sqlBuilder= "UPDATE $this->tableName SET";
-        foreach($data as $column =>$value){
-            $this->sqlBuilder.=" `$column`=:$column, ";
+    public function update($primaryKeyColumn, $id, $data)
+    {
+        $this->sqlBuilder = "UPDATE $this->tableName SET";
+        $updateColumns = [];
+
+        foreach ($data as $column => $value) {
+            $updateColumns[] = "`$column`=:$column";
         }
-        $this->sqlBuilder=rtrim($this->sqlBuilder,', ');
-        $this->sqlBuilder.= " WHERE `id`=:id";
+        $this->sqlBuilder .= " " . implode(', ', $updateColumns);
+        $this->sqlBuilder .= " WHERE `$primaryKeyColumn`=:id";
+
+        $stmt = $this->conn->prepare($this->sqlBuilder);
+
+        // Bind the ID parameter
+        $data['id'] = $id;
+
+        return $stmt->execute($data);
     }
 }
