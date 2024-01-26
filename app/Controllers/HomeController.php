@@ -4,7 +4,6 @@ use App\Models\TruyenModel;
 Class HomeController extends BaseController{
     public function index(){
         $Truyen=TruyenModel::all();
-        $data=(array)$Truyen;
         $this->view("/view/headder",[]);
         $this->view("/view/list",$Truyen);
         $this->view("/view/footer",[]);

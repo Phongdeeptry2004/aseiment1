@@ -50,9 +50,9 @@
                             <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
-                    <li><a class="nav-menu_item" href="/sang-tac"><span class>Sáng tác</span></a></li>
-                    <li><a class="nav-menu_item" href="/thao-luan"><span class>Thảo luận</span></a></li>
-                    <li><a class="nav-menu_item" href="/danh-sach"><span class>Danh sách</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>sang-tac"><span class>Sáng tác</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>thao-luan"><span class>Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>danh-sach"><span class>Danh sách</span></a></li>
                     <li class="nav-has-submenu">
                         <a class="nav-menu_item">
                             <span class>Hướng dẫn</span>
@@ -102,9 +102,9 @@
                     </form>
                 </div>
                 <ul class="navbar-menu at-navbar none d-xl-block unstyled">
-                    <li><a class="nav-menu_item" href="/sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class>Sáng tác</span></a></li>
-                    <li><a class="nav-menu_item" href="/thao-luan"><i class="fas fa-users menu-icon"></i><span class>Thảo luận</span></a></li>
-                    <li><a class="nav-menu_item" href="/danh-sach"><i class="fas fa-th-list menu-icon"></i><span class>Danh sách</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class>Sáng tác</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>thao-luan"><i class="fas fa-users menu-icon"></i><span class>Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>danh-sach"><i class="fas fa-th-list menu-icon"></i><span class>Danh sách</span></a></li>
                     <li class="nav-has-submenu">
                         <a class="nav-menu_item">
                             <i class="fas fa-question menu-icon"></i><span class>Hướng dẫn</span>

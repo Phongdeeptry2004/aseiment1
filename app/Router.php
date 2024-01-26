@@ -30,7 +30,6 @@ class Router
         //tìm vị trí của dấu hỏi chấm
 
         $position=strpos($path, "?");
-        echo $position;
         //cắt bỏ phần tham số
         if($position){ 
         $path=substr($path,0,$position);

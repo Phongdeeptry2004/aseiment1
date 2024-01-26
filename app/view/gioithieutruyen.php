@@ -1,4 +1,11 @@
-<?php print_r($oneTruyen); ?>
+<?php use App\Models\ChuongModel;
+        if(isset($_GET['id'])){
+            $idtruyen=$_GET['id'];
+        }else{
+
+        }
+        $chuong=ChuongModel::where("MaTruyen","=",$idtruyen)->get();
+ ?>
 <div class="container">
     <div class="row d-block clearfix">
         <div class="col-12 col-lg-12 float-left">
@@ -12,7 +19,7 @@
                                         <span>Truyện dịch</span>
                                     </div>
                                     <div class="a6-ratio">
-                                        <div class="content img-in-ratio" style="background-image: url('<?php echo $oneTruyen['img'] ?>')">
+                                        <div class="content img-in-ratio" style="background-image: url('<?php echo $data['img'] ?>')">
                                         </div>
                                     </div>
                                 </div>
@@ -21,7 +28,7 @@
                                 <div class="flex-1">
                                     <div class="series-name-group">
                                         <span class="series-name">
-                                            <a href="index.php?action=matruyen&matruyen=<?php echo $oneTruyen['MaTruyen'] ?>"><?php echo $oneTruyen['TieuDe'] ?></a>
+                                            <a href="index.php?action=matruyen&matruyen=<?php echo $data['MaTruyen'] ?>"><?php echo $data['TieuDe'] ?></a>
                                         </span>
                                     </div>
                                     <div class="series-information mb-0 flex flex-col">
@@ -58,7 +65,7 @@
                                         <div class="col-4 col-md feature-item width-auto-xl">
                                             <a id="collect" class="side-feature-button button-follow follow" href="https://docln.net/login">
                                                 <span class="block feature-value"><i class="far fa-heart"></i></span>
-                                                <span class="block feature-name"> <?php echo $oneTruyen['LuotThich'] ?> </span>
+                                                <span class="block feature-name"> <?php echo $data['LuotThich'] ?> </span>
                                             </a>
                                         </div>
                                         <div class="col-4 col-md feature-item width-auto-xl">
@@ -130,7 +137,7 @@
                                 <div class="series-summary">
                                     <h4 class="font-bold">Tóm tắt</h4>
                                     <div class="summary-content">
-                                        <?php echo $oneTruyen['MoTa'] ?>
+                                        <?php echo $data['MoTa'] ?>
                                     </div>
                                     <div class="summary-more none more-state">
                                         <div class="see_more">Xem thêm</div>
@@ -175,14 +182,13 @@
                         <div class="col-12 col-md-12">
                             <ul class="list-chapters at-series">
                                 <?php
-                                print_r($chuong);
 
                                 if ($chuong != null) :
                                     foreach ($chuong as $key) : ?>
                                         <li class>
                                             <div class="chapter-name">
                                                 <i class="fas fa-image" aria-hidden="true" title="Có chứa ảnh"></i>
-                                                <a href="index.php?action=Doctruyen&matruyen=<?php echo $idtruyen ?>&chuong=<?php echo $key->MaChuong ?>" title="<?php echo $key->TieuDeChuong ?>"><?php echo $key->TieuDeChuong ?></a>
+                                                <a href="<?php ROOT_PATH?>chuong?ma-chuong=<?php echo $key->MaChuong ?>" title="<?php echo $key->TieuDeChuong ?>"><?php echo $key->TieuDeChuong ?></a>
                                             </div>
                                             <div class="chapter-time"><?php echo $key->ThoiDiemXuatBan ?></div>
                                         </li>

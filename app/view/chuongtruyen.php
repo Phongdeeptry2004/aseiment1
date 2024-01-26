@@ -8,6 +8,37 @@
             display: none;
         }
     </style>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trang chủ - Cổng Light Novel - Đọc Light Novel</title>
+    <meta name="description" content="Đọc Light Novel online, bình luận Light Novel. Thư viện Light Novel Tiếng Việt lớn nhất, chất lượng cao, cập nhật liên tục, nhiều chức năng hỗ trợ việc đọc truyện dễ dàng.">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png?v=3">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon.png?v=3">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png?v=3">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=3">
+
+    
+    <link rel="stylesheet" href="css/interface.css?id=9dd805f5b3fe086964a7">
+    <link rel="stylesheet" href="css/tailwind.css?id=de66df19c9f6c325eb24">
+    <link rel="stylesheet" href="css/all.min.css" />
+    <script src="js/plugins.js?id=e21645b96ee550503766"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-34864968-3');
+    </script>
+</head>
+
     <main id="mainpart" class="reading-page style-4">
         <section id="rd-side_icon" class="none force-block-l">
             <a class="rd_sd-button_item rd_top-left"
@@ -285,69 +316,9 @@
                     <div style="text-align: center; margin: 20px auto -20px auto;">
                     </div>
                     <div id="chapter-content" class="long-text no-select text-justify">
-                        <p id="1">“Cậu thấy sao Ibuki-kun? Dễ thương chứ?” Airi xoay một vòng hỏi khi mặc lên bộ đồng
-                            phục cao trung mới mua về.</p>
-                        <p id="2">“Ừ, thì… khá hợp đấy chứ?”</p>
-                        <p id="3">“Dễ thương không?”</p>
-                        <p id="4">“…Dễ thương đấy.”</p>
-                        <p id="5">“Ibuki-kun… Cậu trông cũng tuyệt lắm đấy.”</p>
-                        <p id="6">“Ah… vậy sao?”</p>
-                        <p id="7">Tôi vô thức gãi má. Tôi, cũng như Airi, đang mặc bộ đồng phục chuẩn bị cho tháng Tư
-                            tới.</p>
-                        <p id="8">“Mà này, Ibuki-kun, tớ có cái này muốn hỏi. Cậu nghĩ tớ nên để váy đến cỡ nào?”</p>
-                        <p id="9">“Cậu tính chỉnh đồ ngay khi mới mua luôn à?”</p>
-                        <p id="10">“Ừ thì, để dài quá gối chẳng thời trang tẹo nào, và mọi người cũng để váy ngắn mà.”
-                        </p>
-                        <p id="11">Trường tôi nổi tiếng với luật lệ khá lỏng lẻo. Và những đàn chị bọn tôi thấy hồi sáng
-                            mặc váy cũng khá ngắn, nên không phải là nhỏ không được phép làm vậy.</p>
-                        <p id="12">“<em>Tầm này</em> thì sao?” Airi nói rồi kéo váy lên tầm 10 phân. Cặp đùi trắng hiện
-                            ra trước mắt khiến tôi khó xử tránh đi.</p>
-                        <p id="13">“N-Này, thôi nào… Thế không được đâu.”</p>
-                        <p id="14">“Oh? Gì thế?... Cậu đang ngượng đấy à?”</p>
-                        <p id="15">Ý kiến của tôi có vẻ như đã phản tác dụng, khi Airi bắt đầu cười ranh mãnh rồi kéo
-                            váy lên thêm 10 phân nữa.</p>
-                        <p id="16">“Nhìn xem, giờ thì sao? Dễ thương mà ha? Hay có lẽ tớ nên kéo thêm chút nữa?”</p>
-                        <p id="17">“Rồi hiểu rồi. Tớ sẽ trả lời nghiêm túc nên thôi đi… Theo tớ thì ngày đầu tiên cậu
-                            nên tránh mấy việc này đã, hiểu chứ?”</p>
-                        <p id="18">“Uh… Cậu nói cũng phải. Thế cậu nghĩ đến đâu là vừa?”</p>
-                        <p id="19">“Như lúc đầu đi.”</p>
-                        <p id="20">Nghe tôi nói, Airi kéo mép váy xuống tầm 10cm trên đầu gối.</p>
-                        <p id="21"><em>Vài người có lẽ vẫn sẽ nghĩ là quá ngắn… Mình có thể tưởng tượng bố Airi cau mày
-                                khi thấy thế này.</em></p>
-                        <p id="22">“Như vậy được rồi mà nhỉ?”</p>
-                        <p id="23">“Cậu thấy vậy à? …Không lên thêm chút nữa được sao? Kiểu tầm, 5cm thôi.”</p>
-                        <p id="24">“Tớ nghĩ thêm 5cm chắc vẫn chấp nhận được… nhưng mà cậu có chắc sẽ mặc thế ngay ngày
-                            đầu không?”</p>
-                        <p id="25">“Vậy thì thêm 2 thôi… Cậu thấy sao?”</p>
-                        <p id="26">“Ừ, hợp đấy.”</p>
-                        <p id="27">Airi có đôi chân khá thon thả, nên dù váy có ngắn hơn thì vẫn hợp… nhưng nếu tôi nói
-                            thế thì nhỏ sẽ để váy ngắn đến mức đáng báo động mất.</p>
-                        <p id="28">“Được rồi, Ibuki-kun. Giúp tớ giữ mốc này đi, tớ sẽ cố định lại.”</p>
-                        <p id="29">“Rồi, rồi.”</p>
-                        <p id="30">Tôi giữ váy khi Airi đang cố định mép váy lại. Rồi nhỏ tự soi gương, tạo đủ kiểu dáng
-                            rồi xoay người lại nhìn tôi. Khi đó phần mép váy khẽ bay lên làm lộ ra cặp đùi trắng nõn.
-                        </p>
-                        <p id="31">Chúng có hơi… kích thích một chút.</p>
-                        <p id="32">“Cậu thấy sao?”</p>
-                        <p id="33">“A-Ah, ừ… đẹp đấy.”</p>
-                        <p id="34">Nghe tôi nói vậy, Airi bối rối.</p>
-                        <p id="35">“…Chờ chút, cậu đang nói về cái gì thế?”</p>
-                        <p id="36">“Hmm? Không, có gì đâu…”</p>
-                        <p id="37">Thấy tôi nói vấp, Airi cười toe toét.</p>
-                        <p id="38">“Ibuki-kun, cậu có fetish chân à? Đồ biến thái ngầm này!!”</p>
-                        <p id="39">“<em>Cậu chính là người</em> để lộ ra cho tớ thấy đấy…”</p>
-                        <p id="40">Suốt một hồi sau Airi cứ lải nhải về cái ‘fetish’ đó trước mặt tôi.</p>
-                        <p id="41"><img src="https://pbs.twimg.com/media/F7KZJjKa8AAz2qo?format=jpg&amp;name=900x900"
-                                alt="Hình ảnh"></p>
-
-                        <a href="/truyen/15424" target="__blank">
-                            <img src="https://i.docln.net/lightnovel/banners/chapter/15424_d.jpg?t=1690865157"
-                                class="d-none d-md-block" style="width: 970px; height: auto">
-                        </a>
-                        <a href="/truyen/15424" target="__blank">
-                            <img src="https://i.docln.net/lightnovel/banners/chapter/15424_m.jpg?t=1690865157"
-                                class="d-md-none" style="width: 100%; height: auto">
-                        </a>
+                        <?php 
+                        echo nl2br($data['NoiDungChuong']);
+                        ?>
                     </div>
                     <div style="text-align: center; margin: 20px auto 10px auto;">
                     </div>
