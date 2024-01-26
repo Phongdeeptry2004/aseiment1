@@ -3,10 +3,21 @@ namespace App\Controllers;
 use App\Models\TruyenModel;
 Class HomeController extends BaseController{
     public function index(){
-        $Truyen=new TruyenModel();
-        $data=$Truyen->all();
-        $this->view("headder",[]);
-        $this->view("list",$data);
-        $this->view("footer",[]);
+        $Truyen=TruyenModel::all();
+        $data=(array)$Truyen;
+        $this->view("/view/headder",[]);
+        $this->view("/view/list",$Truyen);
+        $this->view("/view/footer",[]);
+    }
+    public function adminIndex(){
+        return $this->view('/clients/home',[]);
+    }
+    public function detail(){
+        // $id=$_GET['id'];
+        $truyen=TruyenModel::find('MaTruyen',$id);
+        foreach ($truyen as $key => $value) {
+            echo $key ." : ";
+            echo $value ."<br>";
+        }
     }
 }

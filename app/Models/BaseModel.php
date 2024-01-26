@@ -38,7 +38,7 @@ class BaseModel
 
     // phuong thuc find: dung tim du lieu theo id
 
-    public function find($column, $id)
+    public static function find($column, $id)
     {
         $model = new static; //khoi tao static
         $model->sqlBuilder = "SELECT * FROM $model->tableName where $column=:id";
