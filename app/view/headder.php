@@ -40,14 +40,14 @@
                 </div>
                 <ul class="navbar-menu none hidden-block at-mobile unstyle">
                     <div class="navbar-search block none-m in-navbar-menu">
-                        <form class action="/tim-kiem" method="get">
+                        <form class action="<?php ROOT_PATH?>tim-kiem" method="get">
                             <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value>
                             <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
-                    <li><a class="nav-menu_item" href="/sang-tac"><span class>Sáng tác</span></a></li>
-                    <li><a class="nav-menu_item" href="/thao-luan"><span class>Thảo luận</span></a></li>
-                    <li><a class="nav-menu_item" href="/danh-sach"><span class>Danh sách</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>sang-tac"><span class>Sáng tác</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>thao-luan"><span class>Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>danh-sach"><span class>Danh sách</span></a></li>
                     <li class="nav-has-submenu">
                         <a class="nav-menu_item">
                             <span class>Hướng dẫn</span>
@@ -63,10 +63,10 @@
                 </ul>
             </div>
             <div class="navbar-logo-wrapper">
-                <a href="/" class="navbar-logo" style="background-image: url('/img/logo-9.png')" title="Trang chủ"></a>
+                <a href="<?php ROOT_PATH?>home" class="navbar-logo" style="background-image: url('/img/logo-9.png')" title="Trang chủ"></a>
             </div>
             <div id="navbar-user" class="guest">
-                <a class="login-link" href="/login">Đăng nhập</a>
+                <a class="login-link" href="<?php ROOT_PATH?>login">Đăng nhập</a>
                 <div id="guest-menu">
                     <div class="icon">
                         <span class="white-point"></span>
@@ -91,15 +91,15 @@
             </div>
             <div class="navbar-mainblock">
                 <div class="navbar-search none block-m">
-                    <form class action="/tim-kiem" method="get">
+                    <form class action="<?php ROOT_PATH?>tim-kiem" method="get">
                         <input class="search-input" type="text" placeholder="Tối thiểu 2 kí tự" name="keywords" value>
                         <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
                 <ul class="navbar-menu at-navbar none d-xl-block unstyled">
-                    <li><a class="nav-menu_item" href="/sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class>Sáng tác</span></a></li>
-                    <li><a class="nav-menu_item" href="/thao-luan"><i class="fas fa-users menu-icon"></i><span class>Thảo luận</span></a></li>
-                    <li><a class="nav-menu_item" href="/danh-sach"><i class="fas fa-th-list menu-icon"></i><span class>Danh sách</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>sang-tac"><i class="fas fa-pen-nib menu-icon"></i><span class>Sáng tác</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>thao-luan"><i class="fas fa-users menu-icon"></i><span class>Thảo luận</span></a></li>
+                    <li><a class="nav-menu_item" href="<?php ROOT_PATH?>danh-sach"><i class="fas fa-th-list menu-icon"></i><span class>Danh sách</span></a></li>
                     <li class="nav-has-submenu">
                         <a class="nav-menu_item">
                             <i class="fas fa-question menu-icon"></i><span class>Hướng dẫn</span>
