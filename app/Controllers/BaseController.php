@@ -1,8 +1,8 @@
 <?php
-namespace App\Controller;
+namespace App\Controllers;
 class BaseController {
     public function view($path, $data=[]){
-        include_once "app/view/$path.php";
+        include_once "app/$path.php";
         
     }
 }

@@ -121,7 +121,7 @@
                                 ?>
                                 <div class="thumb-item-flow col-4 col-md-3 col-lg-2">
                                     <div class="thumb-wrapper ln-tooltip" data-tooltip-content="#series_<?php echo $item->MaTruyen ?>">
-                                        <a href="index.php?action=GTtruyen&matruyen=<?php echo $item->MaTruyen ?>"
+                                        <a href="<?php ROOT_PATH?>detail?id=<?php echo $item->MaTruyen ?>"
                                             title="<?php echo $item->TieuDe?>">
                                             <div class="a6-ratio">
                                                 <div class="content img-in-ratio lazyload"
@@ -132,13 +132,13 @@
                                         <div class="thumb-detail">
                                             <div class="thumb_attr chapter-title"
                                                 title="<?php echo $item->TieuDe?>"><a
-                                                    href="/truyen?matruyen=<?php echo $item->MaTruyen ?>"
+                                                    href="<?php ROOT_PATH?>detail?id=<?php echo $item->MaTruyen ?>"
                                                     title="<?php echo $item->TieuDe?>"><?php echo $item->TieuDe?></a></div>
                                             <div class="thumb_attr volume-title">tên vol</div>
                                         </div>
                                     </div>
                                     <div class="thumb_attr series-title"><a
-                                            href="index.php?action=matruyen&matruyen=<?php echo $item->MaTruyen ?>"
+                                            href="<?php ROOT_PATH?>detail?id=<?php echo $item->MaTruyen ?>"
                                             title="<?php echo $item->TieuDe?>">
                                             <?php echo $item->TieuDe?> 
                                         </a></div>

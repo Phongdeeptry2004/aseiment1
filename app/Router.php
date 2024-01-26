@@ -27,11 +27,20 @@ class Router
     {
         $method = $this->getMethod();
         $path = str_replace(URI, "/", $_SERVER['REQUEST_URI']);
+        //tìm vị trí của dấu hỏi chấm
+
+        $position=strpos($path, "?");
+        echo $position;
+        //cắt bỏ phần tham số
+        if($position){ 
+        $path=substr($path,0,$position);
+        }
+        // echo $path;
         $callback = false;
         if (isset(static::$routes[$method][$path])) {
             $callback = static::$routes[$method][$path];
         }
-        var_dump($callback);
+        // var_dump($callback);
         if ($callback === false) {
             // Handle case when route is not found (404 Not Found)
             http_response_code(404);
