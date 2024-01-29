@@ -18,6 +18,7 @@ $router = new Router();
 
 // Define routes
 Router::get("/home",[HomeController::class,'index']);
+Router::get("/",[HomeController::class,'index']);
 Router::get("/truyen",[TruyenController::class,'gioithieutruyen']);
 Router::get("/chuong",[ChuongController::class,'Chuong']);
 Router::get("/sang-tac",[ListController::class,'List']);

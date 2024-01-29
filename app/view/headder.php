@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/interface.css?id=9dd805f5b3fe086964a7">
     <link rel="stylesheet" href="css/tailwind.css?id=de66df19c9f6c325eb24">
     <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/icons/font-awesome/css/fontawesome-all.css">
     <script src="js/plugins.js"></script>
     
     <script>
@@ -63,7 +64,7 @@
                 </ul>
             </div>
             <div class="navbar-logo-wrapper">
-                <a href="<?php ROOT_PATH?>home" class="navbar-logo" style="background-image: url('/img/logo-9.png')" title="Trang chủ"></a>
+                <a href="<?php ROOT_PATH?>home" class="navbar-logo" style="background-image: url('img/logo-9.png')" title="Trang chủ"></a>
             </div>
             <div id="navbar-user" class="guest">
                 <a class="login-link" href="<?php ROOT_PATH?>login">Đăng nhập</a>
@@ -120,9 +121,9 @@
     </div>
     <div class="page-top-group  at-index ">
         <a href="/thao-luan/2591">
-            <div class="index-background d-none d-lg-block" style="background-image: url('/images/banners/fbg_d.jpg')">
+            <div class="index-background d-none d-lg-block" style="background-image: url('img/path/12890_d_l.jpg')">
             </div>
-            <div class="index-background d-lg-none" style="background-image: url('/images/banners/fbg_m.jpg'); background-size: cover"></div>
+            <div class="index-background d-lg-none" style="background-image: url('img/path/12890_m_l.jpg'); background-size: cover"></div>
         </a>
     </div>
     <main id="mainpart" class="at-index">

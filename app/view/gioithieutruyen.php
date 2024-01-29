@@ -1,10 +1,18 @@
 <?php use App\Models\ChuongModel;
+use App\Models\TruyenModel;
+
         if(isset($_GET['id'])){
             $idtruyen=$_GET['id'];
         }else{
-
+            echo "Không nghịch link nhá ";
+            exit();
         }
         $chuong=ChuongModel::where("MaTruyen","=",$idtruyen)->get();
+        $sotu=TruyenModel::demchu($idtruyen);
+        // var_dump($chuong);
+        $time=ChuongModel::where("MaTruyen","=",$idtruyen)->andOderbyDESC("ThoiDiemXuatBan")->get();
+        $ngaycapnhat=date('Y-m-d\TH:i:sP', strtotime($time[0]->ThoiDiemXuatBan));   
+    
  ?>
 <div class="container">
     <div class="row d-block clearfix">
@@ -19,7 +27,7 @@
                                         <span>Truyện dịch</span>
                                     </div>
                                     <div class="a6-ratio">
-                                        <div class="content img-in-ratio" style="background-image: url('<?php echo $data['img'] ?>')">
+                                        <div class="content img-in-ratio" style="background-image: url('img/<?php echo $data['img'] ?>')">
                                         </div>
                                     </div>
                                 </div>
@@ -79,13 +87,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4 col-md feature-item width-auto-xl">
-                                            <div class="catalog-icon side-feature-button">
-                                                <span class="block feature-value"><i class="fas fa-list"></i></span>
-                                                <span class="block feature-name">Mục lục</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-4 col-md feature-item width-auto-xl">
-                                            <a href="https://docln.net/truyen/16873-ban-thuo-nho-tro-thanh-than-tuong-noi-tieng-nhung-co-gai-de-thuong-dang-ung-ho-toi#series-comments" class="side-feature-button">
+                                            <a href="#series-comments" class="side-feature-button">
                                                 <span class="block feature-value"><i class="fas fa-comments"></i></span>
                                                 <span class="block feature-name">Bàn luận</span>
                                             </a>
@@ -97,10 +99,8 @@
                                             </label>
                                             <input type="checkbox" id="open-sharing" />
                                             <div class="sharing-box">
-                                                <a x-data href="#" class="sharing-item" @click.prevent="window.navigator.clipboard.writeText('https://docln.net/truyen/16873'); $store.toast.show('Copy thành công!')">Link
+                                                <a x-data href="#" class="sharing-item" @click.prevent="window.navigator.clipboard.writeText('<?php echo ROOT_PATH?>truyen?id=<?php echo $data['MaTruyen'] ?>'); $store.toast.show('Copy thành công!')">Link
                                                     rút gọn</a>
-                                                <a class="sharing-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdocln.net%2Ftruyen%2F16873-ban-thuo-nho-tro-thanh-than-tuong-noi-tieng-nhung-co-gai-de-thuong-dang-ung-ho-toi" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                                <a class="sharing-item" href="https://twitter.com/intent/tweet?text=Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~&url=https%3A%2F%2Fdocln.net%2Ftruyen%2F16873-ban-thuo-nho-tro-thanh-than-tuong-noi-tieng-nhung-co-gai-de-thuong-dang-ung-ho-toi" target="_blank"><i class="fab fa-twitter"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -114,11 +114,11 @@
                                 <div class="row statistic-list">
                                     <div class="col-12 col-md-3 statistic-item block-wide at-mobile">
                                         <div class="statistic-name">Lần cuối</div>
-                                        <div class="statistic-value"><time class="timeago" title="18/01/2024 10:03:55" datetime="2024-01-18T10:03:55+07:00">Đang chạy...</time></div>
+                                        <div class="statistic-value"><time class="timeago" title="18/01/2023 10:03:55" datetime="<?php echo $ngaycapnhat ?>">Đang chạy...</time></div>
                                     </div>
                                     <div class="col-4 col-md-3 statistic-item">
                                         <div class="statistic-name">Số từ</div>
-                                        <div class="statistic-value">6.753</div>
+                                        <div class="statistic-value"><?php echo $sotu[0]->TongSoTu ?></div>
                                     </div>
                                     <div class="col-4 col-md-3 statistic-item">
                                         <div class="statistic-name">Đánh giá</div>
@@ -173,7 +173,7 @@
                 <header id="volume_23120" class="sect-header">
                     <span class="mobile-icon"><i class="fas fa-chevron-down"></i></span>
                     <span class="sect-title">
-                        Chương <span style="color: red">*</span>
+                        Chương 
                     </span>
                 </header>
                 <main class="d-lg-block">
@@ -187,7 +187,6 @@
                                     foreach ($chuong as $key) : ?>
                                         <li class>
                                             <div class="chapter-name">
-                                                <i class="fas fa-image" aria-hidden="true" title="Có chứa ảnh"></i>
                                                 <a href="<?php ROOT_PATH?>chuong?ma-chuong=<?php echo $key->MaChuong ?>" title="<?php echo $key->TieuDeChuong ?>"><?php echo $key->TieuDeChuong ?></a>
                                             </div>
                                             <div class="chapter-time"><?php echo $key->ThoiDiemXuatBan ?></div>
