@@ -35,7 +35,16 @@ class BaseModel
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
-
+    public static function getChapterBeforeAndAfter($MaTruyen)
+    {
+        $model = new static; //khoi tao static
+        $model->sqlBuilder = "SELECT `MaChuong`,`SoChuong` FROM $model->tableName where $MaTruyen=:MaTruyen ORDER BY `SoChuong` ASC";
+        //chuan bi
+        $stmt = $model->conn->prepare($model->sqlBuilder);
+        //thuc thi
+        $stmt->execute(['MaTruyen'=>$MaTruyen]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
     // phuong thuc find: dung tim du lieu theo id
 
     public static function find($column, $id)
@@ -72,9 +81,19 @@ class BaseModel
         $this->sqlBuilder .= " AND `$column` $condition '$value'";
         return $this;
     }
-    public function andOderbyDESC($column,$Limit)
+    public function andOderbyDESClimit($column,$Limit)
     {
         $this->sqlBuilder .= " ORDER BY `$column` DESC LIMIT $Limit";
+        return $this;
+    }
+    public function andOderbyASClimit($column,$Limit)
+    {
+        $this->sqlBuilder .= " ORDER BY `$column` ASC LIMIT $Limit";
+        return $this;
+    }
+    public function andOderbyDESC($column)
+    {
+        $this->sqlBuilder .= " ORDER BY `$column` DESC";
         return $this;
     }
     public function andOderbyASC($column)
@@ -124,6 +143,16 @@ class BaseModel
             var_dump($stmt->errorInfo());
             die();
         }
+    }
+    public static function demchu($idtruyen){
+        $model = new static;
+        $model->sqlBuilder = "SELECT SUM(LENGTH(NoiDungChuong) - LENGTH(REPLACE(NoiDungChuong, ' ', '')) + 1) AS TongSoTu
+        FROM `chuongtruyen` WHERE MaTruyen=:idtruyen";
+        //chuan bi
+        $stmt = $model->conn->prepare($model->sqlBuilder);
+        //thuc thi
+        $stmt->execute(['idtruyen'=>$idtruyen]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
     /*
     Method  update : dungf ddeer caapj nhaatj duwx lieeuj 

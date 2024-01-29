@@ -95,7 +95,7 @@
                             ?>
                             <div class="section-content">
                                 <ul class="filter-type unstyled clear">
-                                    <li class="filter-type_item"><a href="<?php ROOT_PATH ?>danh-sach   ?id=<?php echo $value->MaDanhMuc ?>"><?php echo $value->TenDanhMuc ?></a>
+                                    <li class="filter-type_item"><a href="<?php ROOT_PATH ?>danh-sach?id=<?php echo $value->MaDanhMuc ?>"><?php echo $value->TenDanhMuc ?></a>
                                 </ul>
                             </div>
                             <?php 

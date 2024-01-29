@@ -1,3 +1,60 @@
+<?php 
+ use App\Models\ChuongModel;
+
+$c = new ChuongModel();
+$array = $c->getChapterBeforeAndAfter($data['MaTruyen']);
+
+function getChapterBeforeAndAfter($chapters, $currentChapterId)
+{
+    // Sắp xếp mảng theo SoChuong từ thấp đến cao
+    usort($chapters, function ($a, $b) {
+        return $a->SoChuong - $b->SoChuong;
+    });
+
+    $chapters = array_values($chapters); // Đảm bảo mảng có index bắt đầu từ 0
+    $result = array(
+        'previousChapter' => null,
+        'nextChapter' => null
+    );
+
+    foreach ($chapters as $key => $chapter) {
+        if ($chapter->MaChuong == $currentChapterId) {
+
+            // Nếu là chương hiện tại
+            if ($key > 0) {
+                // Lấy mã chương trước nếu có
+                $result['previousChapter'] = $chapters[$key - 1]->MaChuong;
+            }
+
+            if ($key < count($chapters) - 1) {
+                // Lấy mã chương sau nếu có
+                $result['nextChapter'] = $chapters[$key + 1]->MaChuong;
+            }
+
+            break;
+        }
+    }
+    return $result;
+}
+$currentChapterId = $_GET['ma-chuong']; // Giả sử mã chương được truyền qua tham số GET
+
+// Lấy mảng giá trị từ mảng đối tượng
+$values = array_values($array);
+
+// Tìm vị trí của mã chương hiện tại trong mảng giá trị
+$position = array_search($currentChapterId, array_column($values, 'MaChuong'));
+
+// Kiểm tra xem $currentChapterId có phải là giá trị đầu tiên của mảng không
+$isFirst = ($position === 0);
+
+// Kiểm tra xem $currentChapterId có phải là giá trị cuối cùng của mảng không
+$isLast = ($position === count($values) - 1);
+
+// Sử dụng hàm với mã chương hiện tại
+$result = getChapterBeforeAndAfter($values, $currentChapterId);
+?>
+<link rel="stylesheet" href="css/icons/font-awesome/css/fontawesome-all.css">
+
 <body>
     <style>
         body {
@@ -8,218 +65,184 @@
             display: none;
         }
     </style>
+
     <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trang chủ - Cổng Light Novel - Đọc Light Novel</title>
-    <meta name="description" content="Đọc Light Novel online, bình luận Light Novel. Thư viện Light Novel Tiếng Việt lớn nhất, chất lượng cao, cập nhật liên tục, nhiều chức năng hỗ trợ việc đọc truyện dễ dàng.">
-    <meta name="theme-color" content="#000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.png?v=3">
-    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon.png?v=3">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png?v=3">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=3">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Trang chủ - Cổng Light Novel - Đọc Light Novel</title>
+        <meta name="description" content="Đọc Light Novel online, bình luận Light Novel. Thư viện Light Novel Tiếng Việt lớn nhất, chất lượng cao, cập nhật liên tục, nhiều chức năng hỗ trợ việc đọc truyện dễ dàng.">
+        <meta name="theme-color" content="#000">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/favicon.png?v=3">
+        <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon.png?v=3">
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png?v=3">
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=3">
 
-    
-    <link rel="stylesheet" href="css/interface.css?id=9dd805f5b3fe086964a7">
-    <link rel="stylesheet" href="css/tailwind.css?id=de66df19c9f6c325eb24">
-    <link rel="stylesheet" href="css/all.min.css" />
-    <script src="js/plugins.js?id=e21645b96ee550503766"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-34864968-3');
-    </script>
-</head>
+        <link rel="stylesheet" href="css/interface.css?id=9dd805f5b3fe086964a7">
+        <link rel="stylesheet" href="css/tailwind.css?id=de66df19c9f6c325eb24">
+        <link rel="stylesheet" href="css/all.min.css" />
+        <script src="js/plugins.js?id=e21645b96ee550503766"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-34864968-3');
+        </script>
+    </head>
 
     <main id="mainpart" class="reading-page style-4">
         <section id="rd-side_icon" class="none force-block-l">
-            <a class="rd_sd-button_item rd_top-left"
-                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120860-chuong-08-nu-hon-thu-hai-luc-nua-dem"><i
-                    class="fas fa-backward"></i></a>
-            <a class="rd_sd-button_item"
-                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta"><i
-                    class="fas fa-home"></i></a>
+            <a class="rd_sd-button_item rd_top-left" href="<?php echo ROOT_PATH ?>chuong?ma-chuong=<?php echo $result['previousChapter'] ?>" <?php echo $isFirst ? 'disabled' : '' ?>><i class="fas fa-backward"></i></a>
+            <a class="rd_sd-button_item" href="<?php ROOT_PATH ?>truyen?id=<?php echo $data['MaTruyen'] ?>"><i class="fas fa-home"></i></a>
             <a id="rd-setting_icon" data-affect="#" class="rd_sd-button_item"><i class="fas fa-font"></i></a>
-            <a id="rd-info_icon" data-affect="#rd_sidebar.chapters" class="rd_sd-button_item"><i
-                    class="fas fa-info"></i></a>
-            <a id="rd-bookmark_icon" data-affect="#rd_sidebar.bookmarks" class="rd_sd-button_item"><i
-                    class="fas fa-bookmark"></i></a>
-            <a class="rd_sd-button_item rd_top-right"
-                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c119148-minh-hoa"><i
-                    class="fas fa-forward"></i></a>
+            <a id="rd-info_icon" data-affect="#rd_sidebar.chapters" class="rd_sd-button_item"><i class="fas fa-info"></i></a>
+            <a id="rd-bookmark_icon" data-affect="#rd_sidebar.bookmarks" class="rd_sd-button_item"><i class="fas fa-bookmark"></i></a>
+            <a class="rd_sd-button_item rd_top-right" href="<?php echo ROOT_PATH ?>chuong?ma-chuong=<?php echo $result['nextChapter'] ?>" <?php echo $isLast ? 'disabled' : '' ?>><i class="fas fa-forward"></i></a>
         </section>
         <section id="chapters" class="rd_sidebar rdtoggle">
             <main class="rdtoggle_body">
                 <header class="rd_sidebar-header clear">
-                    <a class="img"
-                        href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to"
-                        style="background: url('https://i.docln.net/lightnovel/covers/s15056-001147c0-398e-46da-a310-ac11a8836fcb-m.jpg') no-repeat"></a>
+                    <a class="img" href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to" style="background: url('https://i.docln.net/lightnovel/covers/s15056-001147c0-398e-46da-a310-ac11a8836fcb-m.jpg') no-repeat"></a>
                     <div class="rd_sidebar-name">
-                        <h5><a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta">&quot;Cậu
+                        <h5><a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta">&quot;Cậu
                                 không thể hôn được,...</a></h5>
                         <small><i class="fas fa-pen"></i>Sakuragi Sakura</small>
                         <small><i class="fas fa-paint-brush"></i>Chigusa Minori</small>
                     </div>
                 </header>
                 <ul id="chap_list" class="unstyled">
-                    <li class="current"><a
-                            href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/t20918-vol-1">Vol
+                    <li class="current"><a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/t20918-vol-1">Vol
                             1</a></li>
                     <ul class="sub-chap_list unstyled">
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113038-minh-hoa">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113038-minh-hoa">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Minh họa
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113036-chuong-mo-dau">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113036-chuong-mo-dau">
                                 Chương mở đầu
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113037-chuong-01-day-mot-bai-hoc-tu-nu-hon-dau-phan-1">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113037-chuong-01-day-mot-bai-hoc-tu-nu-hon-dau-phan-1">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 01: Dạy một bài học từ nụ hôn đầu (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113127-chuong-01-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113127-chuong-01-phan-2">
                                 Chương 01 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113417-chuong-02-man-kabedon-khien-tim-loan-nhip-phan-1">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113417-chuong-02-man-kabedon-khien-tim-loan-nhip-phan-1">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 02: Màn Kabedon khiến tim loạn nhịp (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113557-chuong-02-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113557-chuong-02-phan-2">
                                 Chương 02 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c114529-chuong-03-bai-hoc-tu-mot-tro-dua-phan-1">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c114529-chuong-03-bai-hoc-tu-mot-tro-dua-phan-1">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 03: Bài học từ một trò đùa (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c114662-chuong-03-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c114662-chuong-03-phan-2">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 03 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c115092-chuong-03-phan-3">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c115092-chuong-03-phan-3">
                                 Chương 03 (Phần 3)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c116060-chuong-04-tran-dau-bo3-tai-be-boi-phan-1">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c116060-chuong-04-tran-dau-bo3-tai-be-boi-phan-1">
                                 Chương 04: Trận đấu BO3 tại bể bơi (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c116306-chuong-04-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c116306-chuong-04-phan-2">
                                 Chương 04 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c117417-chuong-04-phan-3">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c117417-chuong-04-phan-3">
                                 Chương 04 (Phần 3)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c117758-chuong-04-phan-4">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c117758-chuong-04-phan-4">
                                 Chương 04 (Phần 4)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c118276-chuong-05-nhung-khi-tuyet-vong-va-tinh-ban-bi-chia-cat-phan-1">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c118276-chuong-05-nhung-khi-tuyet-vong-va-tinh-ban-bi-chia-cat-phan-1">
                                 Chương 05: Những khi tuyệt vọng và tình bạn bị chia cắt (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c118662-chuong-05-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c118662-chuong-05-phan-2">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 05 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120211-chuong-06-ban-song-tau-piano-tinh-tu-phan-1">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120211-chuong-06-ban-song-tau-piano-tinh-tu-phan-1">
                                 Chương 06: Bản song tấu piano tình tứ (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120270-chuong-06-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120270-chuong-06-phan-2">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 06 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120293-phu-chuong">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120293-phu-chuong">
                                 Phụ chương
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120505-chuong-07">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120505-chuong-07">
                                 Chương 07: Buổi học nhóm tình tứ (Phần 1)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120585-chuong-07-phan-2">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120585-chuong-07-phan-2">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 07 (Phần 2)
                             </a>
                         </li>
                         <li>
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120860-chuong-08-nu-hon-thu-hai-luc-nua-dem">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120860-chuong-08-nu-hon-thu-hai-luc-nua-dem">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Chương 08: Nụ hôn thứ hai lúc nửa đêm
                             </a>
                         </li>
                         <li class="current">
-                            <a
-                                href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to">
+                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Ngoại truyện Bookwalker: Nếu cậu bảo là hợp với tớ...
                             </a>
                         </li>
                     </ul>
-                    <li class><a
-                            href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c119148-minh-hoa">Vol
+                    <li class><a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c119148-minh-hoa">Vol
                             2</a></li>
                 </ul>
             </main>
@@ -299,38 +322,35 @@
             <div class="row">
                 <div class="reading-content col-12 col-lg-10 offset-lg-1" style="word-wrap: break-word;">
                     <div id="bookmark_top" class="block d-lg-none"><i class="fas fa-bookmark"></i></div>
-                    <span class="save_bookmark" style="position: absolute; top: 9999px; display: none"><i
-                            class="fas fa-bookmark"></i></span>
+                    <span class="save_bookmark" style="position: absolute; top: 9999px; display: none"><i class="fas fa-bookmark"></i></span>
                     <div class="title-top" style="padding-top: 20px">
                         <h2 class="title-item text-xl font-bold" align="center">Vol 1</h2>
                         <h4 class="title-item text-base font-bold" align="center">Ngoại truyện Bookwalker: Nếu cậu bảo
                             là hợp với tớ...</h4>
                         <h6 class="title-item font-bold" align="center">
-                            <a href="https://docln.net/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to#chapter-comments"
-                                style="text-decoration: underline">11 Bình luận</a> -
+                            <a href="https://docln.net/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to#chapter-comments" style="text-decoration: underline">11 Bình luận</a> -
                             Độ dài: 535 từ - Cập nhật:
-                            <time class="topic-time timeago" title="19-10-2023 01:25:12"
-                                datetime="2023-10-19T01:25:12+07:00"></time>
+                            <time class="topic-time timeago" title="19-10-2023 01:25:12" datetime="2023-10-19T01:25:12+07:00"></time>
                         </h6>
                     </div>
                     <div style="text-align: center; margin: 20px auto -20px auto;">
                     </div>
+                    <pre>
                     <div id="chapter-content" class="long-text no-select text-justify">
-                        <?php 
+                        <?php
+
+
                         echo nl2br($data['NoiDungChuong']);
+                        
                         ?>
                     </div>
-                    <div style="text-align: center; margin: 20px auto 10px auto;">
-                    </div>
-                    <section class="rd-basic_icon row">
-                        <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120860-chuong-08-nu-hon-thu-hai-luc-nua-dem"
-                            class="dark:text-black col text-center "><i class="fas fa-backward"></i></a>
-                        <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta"
-                            class="dark:text-black col text-center"><i class="fas fa-home"></i></a>
-                        <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c119148-minh-hoa"
-                            class="dark:text-black col text-center "><i class="fas fa-forward"></i></a>
-                    </section>
-
+                <section class="rd-basic_icon row">
+                    <a href="<?php echo ROOT_PATH ?>chuong?ma-chuong=<?php echo $result['previousChapter'] ?>" class="dark:text-black col text-center" <?php echo $isFirst ? 'disabled' : '' ?>><i class="fas fa-backward"></i></a>
+                    <!-- Liên kết về trang chủ -->
+                    <a href="<?php echo ROOT_PATH ?>truyen?id=<?php echo $data['MaTruyen'] ?>" class="dark:text-black col text-center"><i class="fas fa-home"></i></a>
+                    <a href="<?php echo ROOT_PATH ?>chuong?ma-chuong=<?php echo $result['nextChapter'] ?>" class="dark:text-black col text-center" <?php echo $isLast ? 'disabled' : '' ?>><i class="fas fa-forward"></i></a>
+                </section>
+                    
                 </div>
                 <div class="col-12 col-lg-10 offset-lg-1">
                     <section id="chapter-comments"

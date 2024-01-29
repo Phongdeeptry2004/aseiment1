@@ -15,8 +15,8 @@
                     use App\Models\TruyenModel;
 
                     $t = new TruyenModel();
-                    // $Truyen = $t ->where("LuotXem","ORDER BY `truyen`.`LuotXem`"," DESC LIMIT 9;")->get();
-                    $Truyen=$t->all();
+                    $Truyen = $t->where("LuotXem",">=","100")->andOderbyDESClimit("LuotXem",8)->get();
+                    // $Truyen=$t->all();
                     foreach ($Truyen as $item) :
                     ?>
                         <div class="popular-thumb-item mr-1">
@@ -29,116 +29,12 @@
                                 </a>
                                 <div class="thumb-detail">
                                     <div class="thumb_attr series-title" title="<?php echo $item->TieuDe?>">
-                                        <a href="<?php ROOT_PATH?>truyen?id=<?php echo $item->MaTruyen ?>" title="<?php echo $item->TieuDe?>">Bạn
-                                            thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ
-                                            trợ tôi ~</a>
+                                        <a href="<?php ROOT_PATH?>truyen?id=<?php echo $item->MaTruyen ?>" title="<?php echo $item->TieuDe?>"><?php echo $item->TieuDe?></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach ?>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/15461-bang-mot-cach-nao-do-dan-my-nhan-hang-s-lai-de-cap-den-toi" title="Không biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i.docln.net/lightnovel/covers/s15461-eb8c3422-acae-4c43-a448-9ece51a0fbeb-m.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Không biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi"><a href="/truyen/15461-bang-mot-cach-nao-do-dan-my-nhan-hang-s-lai-de-cap-den-toi" title="Không biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi">Không
-                                        biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/9193-kurasu-de-nibanme-ni-kawaii-onna-no-ko-to-tomodachi-ni-natta" title="Làm bạn với cô gái đáng yêu thứ hai lớp">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i.docln.net/lightnovel/covers/s9193-28267b79-2581-420f-be87-d3cb0ea0f46d-m.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Làm bạn với cô gái đáng yêu thứ hai lớp"><a href="/truyen/9193-kurasu-de-nibanme-ni-kawaii-onna-no-ko-to-tomodachi-ni-natta" title="Làm bạn với cô gái đáng yêu thứ hai lớp">Làm bạn với cô gái đáng
-                                        yêu thứ hai lớp</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/14884-co-thu-ngan-ma-toi-da-cuu-giup-trong-vu-cuop-tiem-tap-hoa-thuc-ra-lai-la-co-ban-ngay-tho-xinh-dep-chung-lop-voi-toi" title="Konbini Goutou kara Tasuketa Jimi Tenin ga, Onaji Class no Ubude Kawaii Gal datta">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i.docln.net/lightnovel/covers/s14884-b33418e3-89ca-4f59-8c28-421fae46de80-m.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Konbini Goutou kara Tasuketa Jimi Tenin ga, Onaji Class no Ubude Kawaii Gal datta">
-                                    <a href="/truyen/14884-co-thu-ngan-ma-toi-da-cuu-giup-trong-vu-cuop-tiem-tap-hoa-thuc-ra-lai-la-co-ban-ngay-tho-xinh-dep-chung-lop-voi-toi" title="Konbini Goutou kara Tasuketa Jimi Tenin ga, Onaji Class no Ubude Kawaii Gal datta">Konbini
-                                        Goutou kara Tasuketa Jimi Tenin ga, Onaji Class no Ubude Kawaii Gal
-                                        datta</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/8420-conversations-between-two-childhood-friends-that-seem-like-theyre-dating-but-arent-actually-dating-but-they-totally-look-like-theyre-dating" title="Conversations Between Two Childhood Friends That Seem Like They’re Dating but Aren’t Actually Dating but They Totally Look Like They’re Dating">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://docln.net/img/nocover.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Conversations Between Two Childhood Friends That Seem Like They’re Dating but Aren’t Actually Dating but They Totally Look Like They’re Dating">
-                                    <a href="/truyen/8420-conversations-between-two-childhood-friends-that-seem-like-theyre-dating-but-arent-actually-dating-but-they-totally-look-like-theyre-dating" title="Conversations Between Two Childhood Friends That Seem Like They’re Dating but Aren’t Actually Dating but They Totally Look Like They’re Dating">Conversations
-                                        Between Two Childhood Friends That Seem Like They’re Dating but Aren’t
-                                        Actually Dating but They Totally Look Like They’re Dating</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/11586-shimotsuki-wa-mob-ga-suki" title="Shimotsuki wa Mob ga Suki">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i2.docln.net/ln/series/covers/s11586-a810d8f0-3973-41fb-ae79-63c968a7a12e.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Shimotsuki wa Mob ga Suki"><a href="/truyen/11586-shimotsuki-wa-mob-ga-suki" title="Shimotsuki wa Mob ga Suki">Shimotsuki wa Mob ga Suki</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/14989-tat-ca-nguoi-choi-nghi-rang-ta-la-ac-than" title="Tất Cả Người Chơi Đều Cho Rằng Tôi Là Ác Thần">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i.docln.net/lightnovel/covers/s14989-cb0df8d3-d95b-4763-9d0f-472b6a20fbec-m.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Tất Cả Người Chơi Đều Cho Rằng Tôi Là Ác Thần"><a href="/truyen/14989-tat-ca-nguoi-choi-nghi-rang-ta-la-ac-than" title="Tất Cả Người Chơi Đều Cho Rằng Tôi Là Ác Thần">Tất Cả Người Chơi
-                                        Đều Cho Rằng Tôi Là Ác Thần</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/16466-throne-of-magical-arcana" title="Throne of Magical Arcana">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i.docln.net/lightnovel/covers/s16466-6c945c81-0712-4380-9d67-2384a0c17e61-m.jpg')">
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Throne of Magical Arcana"><a href="/truyen/16466-throne-of-magical-arcana" title="Throne of Magical Arcana">Throne of Magical Arcana</a></div>
-                            </div>
-                        </div>
-                    </div>
                 </main>
             </div>
         </div>
