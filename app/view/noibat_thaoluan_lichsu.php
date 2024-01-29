@@ -10,23 +10,33 @@
                             t/gian</a></span>
                 </header>
                 <main class="row slider d-block">
-                    <div class="popular-thumb-item mr-1">
-                        <div class="thumb-wrapper">
-                            <a href="/truyen/16873-ban-thuo-nho-tro-thanh-than-tuong-noi-tieng-nhung-co-gai-de-thuong-dang-ung-ho-toi" title="Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~">
-                                <div class="a6-ratio">
-                                    <div class="content img-in-ratio" style="background-image: url('https://i2.docln.net/ln/series/covers/s16873-6e914b01-94c7-441a-a74b-69d922323e14.jpg')">
+                    <?php
+
+                    use App\Models\TruyenModel;
+
+                    $t = new TruyenModel();
+                    // $Truyen = $t ->where("LuotXem","ORDER BY `truyen`.`LuotXem`"," DESC LIMIT 9;")->get();
+                    $Truyen=$t->all();
+                    foreach ($Truyen as $item) :
+                    ?>
+                        <div class="popular-thumb-item mr-1">
+                            <div class="thumb-wrapper">
+                                <a href="<?php ROOT_PATH?>truyen?id=<?php echo $item->MaTruyen ?>" title="Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~">
+                                    <div class="a6-ratio">
+                                        <div class="content img-in-ratio" style="background-image: url('img/<?php echo $item->img ?>')">
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <div class="thumb-detail">
-                                <div class="thumb_attr series-title" title="Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~">
-                                    <a href="/truyen/16873-ban-thuo-nho-tro-thanh-than-tuong-noi-tieng-nhung-co-gai-de-thuong-dang-ung-ho-toi" title="Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~">Bạn
-                                        thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ
-                                        trợ tôi ~</a>
+                                </a>
+                                <div class="thumb-detail">
+                                    <div class="thumb_attr series-title" title="<?php echo $item->TieuDe?>">
+                                        <a href="<?php ROOT_PATH?>truyen?id=<?php echo $item->MaTruyen ?>" title="<?php echo $item->TieuDe?>">Bạn
+                                            thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ
+                                            trợ tôi ~</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach ?>
                     <div class="popular-thumb-item mr-1">
                         <div class="thumb-wrapper">
                             <a href="/truyen/15461-bang-mot-cach-nao-do-dan-my-nhan-hang-s-lai-de-cap-den-toi" title="Không biết bằng cách nào, dàn mỹ nhân hạng S lại đề cập đến tôi">

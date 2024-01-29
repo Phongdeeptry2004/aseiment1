@@ -19,7 +19,7 @@
                                         <span>Truyện dịch</span>
                                     </div>
                                     <div class="a6-ratio">
-                                        <div class="content img-in-ratio" style="background-image: url('<?php echo $data['img'] ?>')">
+                                        <div class="content img-in-ratio" style="background-image: url('img/<?php echo $data['img'] ?>')">
                                         </div>
                                     </div>
                                 </div>

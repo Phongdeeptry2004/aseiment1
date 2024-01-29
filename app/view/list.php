@@ -87,11 +87,20 @@
                             <div class="title-wrapper">
                                 <div class="section-title">Phân loại</div>
                             </div>
+                            <?php 
+                            use App\Models\DanhmucModel;
+                            $danhmuc=new DanhmucModel();
+                            $alldanhmuc=$danhmuc->all();
+                            foreach ($alldanhmuc as $value):                            
+                            ?>
                             <div class="section-content">
                                 <ul class="filter-type unstyled clear">
-                                    <li class="filter-type_item"><a href="https://docln.net/the-loai/action">Action</a>
+                                    <li class="filter-type_item"><a href="<?php ROOT_PATH ?>danh-sach   ?id=<?php echo $value->MaDanhMuc ?>"><?php echo $value->TenDanhMuc ?></a>
                                 </ul>
                             </div>
+                            <?php 
+                            endforeach;
+                            ?>
                         </section>
                     </div>
                     <div class="col-12 float-left col-lg-9">
@@ -125,7 +134,7 @@
                                             title="<?php echo $item->TieuDe?>">
                                             <div class="a6-ratio">
                                                 <div class="content img-in-ratio lazyload"
-                                                    data-bg="<?php echo $item->img ?>">
+                                                    data-bg="img/<?php echo $item->img ?>">
                                                 </div>
                                             </div>
                                         </a>

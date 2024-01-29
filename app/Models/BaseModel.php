@@ -72,9 +72,9 @@ class BaseModel
         $this->sqlBuilder .= " AND `$column` $condition '$value'";
         return $this;
     }
-    public function andOderbyDESC($column)
+    public function andOderbyDESC($column,$Limit)
     {
-        $this->sqlBuilder .= " ORDER BY `$column` DESC ";
+        $this->sqlBuilder .= " ORDER BY `$column` DESC LIMIT $Limit";
         return $this;
     }
     public function andOderbyASC($column)
