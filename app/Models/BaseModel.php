@@ -38,7 +38,7 @@ class BaseModel
     public static function getChapterBeforeAndAfter($MaTruyen)
     {
         $model = new static; //khoi tao static
-        $model->sqlBuilder = "SELECT `MaChuong`,`SoChuong` FROM $model->tableName where $MaTruyen=:MaTruyen ORDER BY `SoChuong` ASC";
+        $model->sqlBuilder = "SELECT `MaChuong`,`SoChuong` FROM $model->tableName where MaTruyen=:MaTruyen ORDER BY `SoChuong` ASC";
         //chuan bi
         $stmt = $model->conn->prepare($model->sqlBuilder);
         //thuc thi

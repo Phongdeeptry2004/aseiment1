@@ -1,6 +1,5 @@
 <?php 
 namespace App\Controllers;
-
 use App\Models\ChuongModel;
 use App\Models\TruyenModel;
 Class TruyenController extends BaseController{
@@ -12,4 +11,7 @@ Class TruyenController extends BaseController{
         $this->view("/view/gioithieutruyen",(array)$data);
         $this->view("/view/footer",[]);
     }
+    
+
+
 }
