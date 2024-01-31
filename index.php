@@ -23,6 +23,9 @@ Router::get("/truyen",[TruyenController::class,'gioithieutruyen']);
 Router::get("/chuong",[ChuongController::class,'Chuong']);
 Router::get("/sang-tac",[ListController::class,'List']);
 Router::get("/danh-sach",[ListController::class,'List']);
+Router::get("/listadmin",[ListController::class,'ListAdmin']);
+Router::get("/listadmin/add",[ListController::class,'create']);
+Router::post("/listadmin/add",[ListController::class,'store']);
 
 // Resolve the current route
 $router->resolve(); 
