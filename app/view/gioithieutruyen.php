@@ -7,7 +7,7 @@ use App\Models\TruyenModel;
             echo "Không nghịch link nhá ";
             exit();
         }
-        $chuong=ChuongModel::where("MaTruyen","=",$idtruyen)->get();
+        $chuong=ChuongModel::where("MaTruyen","=",$idtruyen)->andOderbyASC("SoChuong")->get();
         $sotu=TruyenModel::demchu($idtruyen);
         // var_dump($chuong);
         $time=ChuongModel::where("MaTruyen","=",$idtruyen)->andOderbyDESC("ThoiDiemXuatBan")->get();

@@ -9,6 +9,7 @@ class BaseModel
     protected $conn;
     protected $sqlBuilder;
     protected $tableName;
+    protected $primaryKey = 'id';
     public function __construct()
     {
         $host = HOSTNAME;
@@ -159,22 +160,21 @@ class BaseModel
     $id : Giá trị của khoá chính 
     $data : Mảng dữ liệu cần nhập , phải đưuocj thiết kế có ket và value
     */
-    public function update($primaryKeyColumn, $id, $data)
+    public function update($id, $data)
     {
-        $this->sqlBuilder = "UPDATE $this->tableName SET";
-        $updateColumns = [];
-
-        foreach ($data as $column => $value) {
-            $updateColumns[] = "`$column`=:$column";
+        $this->sqlBuilder = "UPDATE $this->tableName SET ";
+        foreach ($data as $key=>$value){
+            $this->sqlBuilder .= "`$key`=:$key, ";
         }
-        $this->sqlBuilder .= " " . implode(', ', $updateColumns);
-        $this->sqlBuilder .= " WHERE `$primaryKeyColumn`=:id";
-
+        // xoa loai bo dau ", "
+        $this->sqlBuilder = rtrim($this->sqlBuilder, ", ");
+        // noi lenh dieu kien
+        $this->sqlBuilder .= " Where `$this->primaryKey`=:$this->primaryKey";
         $stmt = $this->conn->prepare($this->sqlBuilder);
+        //dua id vao mang data
+        $data[$this->primaryKey]=$id;
+        $stmt->execute($data);
+        return  $stmt->execute($data);
 
-        // Bind the ID parameter
-        $data['id'] = $id;
-
-        return $stmt->execute($data);
     }
 }

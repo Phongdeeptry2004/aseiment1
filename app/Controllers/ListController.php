@@ -7,8 +7,10 @@ Class ListController extends BaseController{
         if(isset($_GET['id'])){
             $id=$_GET['id'];
             $Truyen =TruyenModel::find("MaDanhMuc",$id);
+            $message=$_COOKIE['message']??"";
         }else{
             $Truyen=TruyenModel::all();
+            $message=$_COOKIE['message']??"";
         }
         $data=(array)$Truyen;
         $this->view("/view/headder",[]);
@@ -30,11 +32,40 @@ Class ListController extends BaseController{
     public function store(){
         $data=$_POST;
         $file=$_FILES['img'];
-        $image=$_FILES['name'];
+        $image="path/".$file['name'];        
         move_uploaded_file($file['tmp_name'], "img/path/".$image);
         $data['img']=$image;
         $truyen= new TruyenModel();
         $truyen->add($data);
+        header('Location: '.ROOT_PATH .'listadmin');
+        die;
+    }
+    //form sửa truyen
+    public function edit(){
+        $ma=$_GET["id"];
+        $truyen=TruyenModel::find("MaTruyen",$ma);
+        $theloai=DanhmucModel::all();
+        $this->view('/view/header_nobanner', []);
+        $this->view('/view/admin/truyen/edit',['truyen'=>$truyen,"DanhMuc"=>$theloai]);
+        $this->view('/view/footer', []);
+    }
+    public function update(){
+        $data=$_POST;
+        $file=$_FILES['img'];
+        if($file['size']>0){
+            $image="path/".$file['name'];
+            move_uploaded_file($file['tmp_name'], "img/".$image);
+            $data['img']=$image;
+        }  
+        $truyen= new TruyenModel();
+        $truyen->update($data['MaTruyen'],$data);
+        header('Location: '.ROOT_PATH .'truyen/edit?id='.$data['MaTruyen']);
+        die();
+    }
+    public function delete(){
+        $id=$_GET['id'];
+        TruyenModel::delete("MaTruyen",$id);
+        setcookie("Message","Xoá dữ liệu thành công",time()+1);
         header('Location: '.ROOT_PATH .'listadmin');
 
     }
