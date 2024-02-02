@@ -10,9 +10,13 @@ use App\Models\TruyenModel;
         $chuong=ChuongModel::where("MaTruyen","=",$idtruyen)->andOderbyASC("SoChuong")->get();
         $sotu=TruyenModel::demchu($idtruyen);
         // var_dump($chuong);
+        if(count($chuong)>0){
         $time=ChuongModel::where("MaTruyen","=",$idtruyen)->andOderbyDESC("ThoiDiemXuatBan")->get();
         $ngaycapnhat=date('Y-m-d\TH:i:sP', strtotime($time[0]->ThoiDiemXuatBan));   
-    
+        }else{
+        $ngaycapnhat="Chưa có";   
+
+        }
  ?>
 <div class="container">
     <div class="row d-block clearfix">
@@ -118,7 +122,7 @@ use App\Models\TruyenModel;
                                     </div>
                                     <div class="col-4 col-md-3 statistic-item">
                                         <div class="statistic-name">Số từ</div>
-                                        <div class="statistic-value"><?php echo $sotu[0]->TongSoTu ?></div>
+                                        <div class="statistic-value"><?php if($sotu[0]->TongSoTu !=0){ echo $sotu[0]->TongSoTu; }else{echo 0;}?></div>
                                     </div>
                                     <div class="col-4 col-md-3 statistic-item">
                                         <div class="statistic-name">Đánh giá</div>
