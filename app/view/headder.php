@@ -17,10 +17,10 @@
     <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon.png?v=3">
     <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png?v=3">
     <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png?v=3">
-    <link rel="stylesheet" href="css/interface.css?id=9dd805f5b3fe086964a7">
-    <link rel="stylesheet" href="css/tailwind.css?id=de66df19c9f6c325eb24">
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/icons/font-awesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="<?=ROOT_PATH?>css/interface.css?id=9dd805f5b3fe086964a7">
+    <link rel="stylesheet" href="<?=ROOT_PATH?>css/tailwind.css?id=de66df19c9f6c325eb24">
+    <link rel="stylesheet" href="<?=ROOT_PATH?>css/all.min.css" />
+    <link rel="stylesheet" href="<?=ROOT_PATH?>css/icons/font-awesome/css/fontawesome-all.css">
     <script src="js/plugins.js"></script>
     
     <script>

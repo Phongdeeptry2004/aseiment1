@@ -4,10 +4,13 @@ require "./config.php";
 require_once __DIR__ . "/vendor/autoload.php";
 // require_once "./app/Controllers/BaseControllers.php";
 
+use App\Controllers\BaseController;
+use App\Controllers\CategoryController;
 use App\Controllers\ChuongController;
 use App\Controllers\HomeController;
 use App\Controllers\ListController;
 use App\Controllers\TruyenController;
+use App\Controllers\UserController;
 use App\Models\TruyenModel;
 use App\Models\ChuongModel;
 use App\Router;
@@ -23,9 +26,23 @@ Router::get("/truyen",[TruyenController::class,'gioithieutruyen']);
 Router::get("/chuong",[ChuongController::class,'Chuong']);
 Router::get("/sang-tac",[ListController::class,'List']);
 Router::get("/danh-sach",[ListController::class,'List']);
-Router::get("/listadmin",[ListController::class,'ListAdmin']);
-Router::get("/listadmin/add",[ListController::class,'create']);
-Router::post("/listadmin/add",[ListController::class,'store']);
-
+//admin
+// list truyen
+Router::get('/admin', [HomeController::class, 'adminIndex']);
+Router::get("/admin/list",[ListController::class,'ListAdmin']);
+Router::get("/admin/addtruyen",[ListController::class,'create']);
+Router::post("/admin/addtruyen",[ListController::class,'store']);
+Router::get("/admin/edittruyen",[ListController::class,'edit']);
+Router::post("/admin/edittruyen",[ListController::class,'update']);
+Router::get("/admin/deletetruyen",[ListController::class,'delete']);
+//user
+Router::get("/admin/user",[UserController::class,'listuser']);
+Router::get("/admin/adduser",[UserController::class,'create']);
+Router::post("/admin/adduser",[UserController::class,'store']);
+Router::get("/admin/edituser",[UserController::class,'edit']);
+Router::post("/admin/edituser",[UserController::class,'update']);
+Router::get("/admin/deleteuser",[UserController::class,'delete']);
+//category
+Router::get("/admin/category",[CategoryController::class,"category"]);
 // Resolve the current route
 $router->resolve(); 

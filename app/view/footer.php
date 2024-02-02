@@ -11,8 +11,8 @@
             });
         </script>
     </main>
-    <script src="js/app.js?id=b8198cd1707d7a5e169b"></script>
-    <script src="js/livewire.js?id=f121a5df" data-csrf="4Zpd0dv39l7TdIiKTPW7jZFBgCUceBI1iIETt6Nn"
+    <script src="<?=ROOT_PATH?>js/app.js?id=b8198cd1707d7a5e169b"></script>
+    <script src="<?=ROOT_PATH?>js/livewire.js?id=f121a5df" data-csrf="4Zpd0dv39l7TdIiKTPW7jZFBgCUceBI1iIETt6Nn"
         data-update-uri="/livewire/update" data-navigate-once="true"></script>
     <script type="text/javascript" src="js/d56b4bd6c3d2c1e161c4ab3c78c27670.js"></script>
     <footer id="footer">

@@ -10,7 +10,9 @@ Class HomeController extends BaseController{
         $this->view("/view/footer",[]);
     }
     public function adminIndex(){
-        return $this->view('/clients/home',[]);
+         $this->view('/view/admin/layout/header',[]);
+         $this->view('/view/admin/layout/home',[]);
+         $this->view('/view/admin/layout/footer',[]);
     }
     
 }
