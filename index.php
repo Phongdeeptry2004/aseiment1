@@ -43,6 +43,11 @@ Router::get("/admin/edituser",[UserController::class,'edit']);
 Router::post("/admin/edituser",[UserController::class,'update']);
 Router::get("/admin/deleteuser",[UserController::class,'delete']);
 //category
-Router::get("/admin/category",[CategoryController::class,"category"]);
+Router::get("/admin/category",[CategoryController::class,"list"]);
+Router::get("/admin/editcategory",[CategoryController::class,"edit"]);
+Router::post("/admin/editcategory",[CategoryController::class,"update"]);
+Router::get("/admin/addcategory",[CategoryController::class,"create"]);
+Router::post("/admin/addcategory",[CategoryController::class,"store"]);
+Router::get("/admin/deletecategory",[CategoryController::class,"delete"]);
 // Resolve the current route
 $router->resolve(); 
