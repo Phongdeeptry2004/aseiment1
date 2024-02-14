@@ -9,6 +9,7 @@ use App\Controllers\CategoryController;
 use App\Controllers\ChuongController;
 use App\Controllers\HomeController;
 use App\Controllers\ListController;
+use App\Controllers\TaiKhoanController;
 use App\Controllers\TruyenController;
 use App\Controllers\UserController;
 use App\Models\TruyenModel;
@@ -43,6 +44,18 @@ Router::get("/admin/edituser",[UserController::class,'edit']);
 Router::post("/admin/edituser",[UserController::class,'update']);
 Router::get("/admin/deleteuser",[UserController::class,'delete']);
 //category
-Router::get("/admin/category",[CategoryController::class,"category"]);
+Router::get("/admin/category",[CategoryController::class,"list"]);
+Router::get("/admin/editcategory",[CategoryController::class,"edit"]);
+Router::post("/admin/editcategory",[CategoryController::class,"update"]);
+Router::get("/admin/addcategory",[CategoryController::class,"create"]);
+Router::post("/admin/addcategory",[CategoryController::class,"store"]);
+Router::get("/admin/deletecategory",[CategoryController::class,"delete"]);
+//login 
+Router::get("/login",[TaiKhoanController::class,"FromLogin"]);
+Router::post("/login",[TaiKhoanController::class,"Login"]);
+Router::get("/register",[TaiKhoanController::class,"FromRegister"]);
+Router::post("/register",[TaiKhoanController::class,"Register"]);
+Router::get("/logout",[TaiKhoanController::class,"logout"]);
+
 // Resolve the current route
 $router->resolve(); 

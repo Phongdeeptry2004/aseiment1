@@ -9,6 +9,7 @@ class BaseModel
     protected $conn;
     protected $sqlBuilder;
     protected $tableName;
+    protected $tableName2;
     protected $primaryKey = 'id';
     public function __construct()
     {
@@ -176,5 +177,26 @@ class BaseModel
         $stmt->execute($data);
         return  $stmt->execute($data);
 
+    }
+    public function allWithJoin()
+    {
+        $model = new static; // Khởi tạo static
+        $model->sqlBuilder = "SELECT $model->tableName2.TieuDe,$model->tableName.MaDanhMuc, $model->tableName.TenDanhMuc FROM $model->tableName 
+        INNER JOIN $model->tableName2 ON $model->tableName2.MaTruyen =$model->tableName.MaTruyen "; // Truy vấn kết hợp
+        // Chuẩn bị
+        $stmt = $model->conn->prepare($model->sqlBuilder);
+        // Thực thi
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }    public function allWithJoinid($id)
+    {
+        $model = new static; // Khởi tạo static
+        $model->sqlBuilder = "SELECT $model->tableName2.TieuDe,$model->tableName.MaDanhMuc, $model->tableName.TenDanhMuc FROM $model->tableName 
+        INNER JOIN $model->tableName2 ON $model->tableName2.MaTruyen =$model->tableName.MaTruyen Where `$this->primaryKey`=$id"; // Truy vấn kết hợp
+        // Chuẩn bị
+        $stmt = $model->conn->prepare($model->sqlBuilder);
+        // Thực thi
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 }
