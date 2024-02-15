@@ -78,8 +78,8 @@
             ?>
                 <div id="navbar-user">
                     <div class="nav-user_icon">
-                        <div class="nav-user_avatar">
-                            <img src="<?=ROOT_PATH?>img/<?=$tk->Avatar?>" alt="Your avatar">
+                    <div class="nav-user_avatar">
+                            <img src="<?= ROOT_PATH ?>img/<?= $tk->Avatar ? $tk->Avatar : 'noava.png' ?>" alt="Your avatar">
                         </div>
                         <div class="at-user_avatar"></div>
                         <ul class="account-sidebar hidden-block unstyled none">

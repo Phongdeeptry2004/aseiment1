@@ -24,6 +24,7 @@ $router = new Router();
 Router::get("/home",[HomeController::class,'index']);
 Router::get("/",[HomeController::class,'index']);
 Router::get("/truyen",[TruyenController::class,'gioithieutruyen']);
+Router::get("/chuong",[TruyenController::class,'LichSu']);
 Router::get("/chuong",[ChuongController::class,'Chuong']);
 Router::get("/sang-tac",[ListController::class,'List']);
 Router::get("/danh-sach",[ListController::class,'List']);
@@ -36,7 +37,7 @@ Router::post("/admin/addtruyen",[ListController::class,'store']);
 Router::get("/admin/edittruyen",[ListController::class,'edit']);
 Router::post("/admin/edittruyen",[ListController::class,'update']);
 Router::get("/admin/deletetruyen",[ListController::class,'delete']);
-//user
+//user admin
 Router::get("/admin/user",[UserController::class,'listuser']);
 Router::get("/admin/adduser",[UserController::class,'create']);
 Router::post("/admin/adduser",[UserController::class,'store']);
@@ -56,6 +57,9 @@ Router::post("/login",[TaiKhoanController::class,"Login"]);
 Router::get("/register",[TaiKhoanController::class,"FromRegister"]);
 Router::post("/register",[TaiKhoanController::class,"Register"]);
 Router::get("/logout",[TaiKhoanController::class,"logout"]);
+
+
+Router::get("/thanh-vien",[TaiKhoanController::class,"info"]);
 
 // Resolve the current route
 $router->resolve(); 
