@@ -70,6 +70,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <?php
+                                if (isset($_COOKIE['Eror'])) {
+                                    echo "<div id='error-message' class='alert alert-danger d-none'>" . $_COOKIE['Eror'] . "</div>";
+                                }
+                                if(isset($_COOKIE['DangKyTC'])) echo "<div id='error-message' class='alert d-none'>" . $_COOKIE['DangKyTC'] . "</div>";
+                                ?>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-btn fa-user"></i> Đăng ký

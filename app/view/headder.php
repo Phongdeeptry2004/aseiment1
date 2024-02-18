@@ -78,18 +78,18 @@
             ?>
                 <div id="navbar-user">
                     <div class="nav-user_icon">
-                        <div class="nav-user_avatar">
-                            <img src="<?=ROOT_PATH?>img/<?=$tk->Avatar?>" alt="Your avatar">
+                    <div class="nav-user_avatar">
+                            <img src="<?= ROOT_PATH ?>img/<?= $tk->Avatar ? $tk->Avatar : 'noava.png' ?>" alt="Your avatar">
                         </div>
                         <div class="at-user_avatar"></div>
                         <ul class="account-sidebar hidden-block unstyled none">
                             <li>
                                 <a href="<?=ROOT_PATH?>thanh-vien?id=<?=$tk->MaNguoiDung?>"><i class="fas fa-user"></i><span>Tài khoản</span></a>
                             </li>
-                            <!-- <li>
-                                <a href="/lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
-                            </li> 
                             <li>
+                                <a href="<?=ROOT_PATH?>lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
+                            </li> 
+                            <!-- <li>
                                 <a href="/bookmark"><i class="fas fa-bookmark"></i><span>Đánh dấu</span></a>
                             </li>
                             <li>
@@ -109,7 +109,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="<?=ROOT_PATH?>action"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
+                                <a href="<?=ROOT_PATH?>admin"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
                             </li>
                             <li>
                                 <a href="<?=ROOT_PATH?>logout"><i class="fas fa-sign-out-alt"></i><span>Thoát</span></a>

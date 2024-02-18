@@ -23,26 +23,36 @@ class TaiKhoanController extends BaseController
     // }
     public function Login()
     {
-        $allTK = TaiKhoanModel::all();
-        $userArray = []; // Khởi tạo mảng để lưu tên người dùng và mật khẩu
-
         if (isset($_POST["TenDangNhap"]) && isset($_POST['MatKhau'])) {
-            $TenDangNhap = $_POST["TenDangNhap"];
-            foreach ($allTK as $tk) {
-                if ($TenDangNhap == $tk->TenDangNhap && $_POST['MatKhau'] == $tk->MatKhau) {
-                    // Lưu tên người dùng và mật khẩu vào mảng
-                    $userArray["MaNguoiDung"] = $tk->MaNguoiDung;
-                    $userArray["TenDangNhap"] = $tk->TenDangNhap;
-                    $userArray["MatKhau"] = $tk->MatKhau;
-                    setcookie('TaiKhoan', json_encode($userArray), time() + 3600, "/");
-                    header("Location: " . ROOT_PATH);
-                } else {
-                    setcookie('Eror', "Sai tài khoản hoặc mật khẩu", time() + 5);
-                    header("Location: " . ROOT_PATH . "login");
-                }
+            $username = trim($_POST["TenDangNhap"]);
+            $password = trim($_POST['MatKhau']);
+
+
+            $user = TaiKhoanModel::where('TenDangNhap', '=', $username)->get();
+            // var_dump($user);
+            // var_dump($password,$username);
+            // var_dump(password_verify($password, $user[0]->MatKhau));
+            // die;
+            if ($user && $password === $user[0]->MatKhau) {
+                // Password is correct
+                $userArray = [
+                    "MaNguoiDung" => $user[0]->MaNguoiDung,
+                    "TenDangNhap" => $user[0]->TenDangNhap,
+                    // You may choose not to store the password in the cookie for security reasons
+                ];
+
+                setcookie('TaiKhoan', json_encode($userArray), time() + 3600, "/");
+                header("Location: " . ROOT_PATH);
+                exit;
+            } else {
+                // Username or password is incorrect
+                setcookie('Eror', "Sai tài khoản hoặc mật khẩu", time() + 5);
+                header("Location: " . ROOT_PATH . "login");
+                exit;
             }
         }
     }
+
 
     public function Logout()
     {
@@ -59,26 +69,47 @@ class TaiKhoanController extends BaseController
         $this->view('view/user/taikhoan/register', []);
     }
     public function Register()
-{
-    $d = $_POST;
-    $RePass = array_pop($d); // Xóa phần tử cuối của mảng
-    $alltk = TaiKhoanModel::all();
-    foreach ($alltk as $value) {
-        var_dump(($value->TenDangNhap == $d['TenDangNhap']));
-        if ($value->TenDangNhap == $d['TenDangNhap']) {
-            return; // Tên đăng nhập đã tồn tại, không thêm tài khoản mới
-        } else {
-            if ($d['MatKhau'] != $RePass) {
-                return; // Mật khẩu không khớp, không thêm tài khoản mới
-            } else {
-                $store = new TaiKhoanModel();
-                $store->add($d); // Thêm tài khoản vào cơ sở dữ liệu
-                setcookie("DangKyTC", "Đăng Ký Thành Công Vui Lòng Đăng Nhập", time() + 5);
-                // header("Location:" . ROOT_PATH . "login"); // Chuyển hướng đến trang đăng nhập
-                return;
-            }
-        }
-    }
-}
+    {
+        $data = $_POST;
+        $repass = array_pop($data); //lấy giá trị của phần tử cuối cùng của mảng
 
+        // Check if the required fields are set
+        if (empty($data['TenDangNhap']) || empty($data['Email']) || empty($data['MatKhau']) || empty($repass)) {
+            // Handle the case where some required fields are empty
+            setcookie('Eror', "Vui lòng điền đầy đủ thông tin đăng ký.", time() + 5);
+            header("Location: " . ROOT_PATH . "register"); // Redirect back to the registration page
+            exit;
+        }
+        // Check if the password and confirmation match
+        if ($data['MatKhau'] !== $repass) {
+            setcookie('Eror', "Mật khẩu và xác nhận mật khẩu không khớp.", time() + 5);
+            header("Location: " . ROOT_PATH . "register"); // Redirect back to the registration page
+            exit;
+        }
+        // Check if the username already exists
+        $existingUser = TaiKhoanModel::where('TenDangNhap', "=", $data['TenDangNhap'])->get();
+        if ($existingUser) {
+            setcookie('Eror', "Tên đăng nhập đã tồn tại. Vui lòng chọn một tên khác.", time() + 5);
+            header("Location: " . ROOT_PATH . "register"); // Redirect back to the registration page
+            exit;
+        }
+
+        // If everything is valid, proceed with user registration
+        $newUser = new TaiKhoanModel();
+        $newUser->add($data);
+
+        setcookie("DangKyTC", "Đăng ký thành công. Vui lòng đăng nhập.", time() + 5);
+        header("Location: " . ROOT_PATH . "login"); // Redirect to the login page
+        exit;
+    }
+
+    public function info()
+    {
+        $MND = $_GET['id'];
+        $userinfo = TaiKhoanModel::find("MaNguoiDung", $MND);
+        var_dump($userinfo);
+        $this->view("/view/header_nobanner", []);
+        $this->view('view/user/userinfo/info', ["ThongTin" => $userinfo]);
+        $this->view("/view/footer", []);
+    }
 }

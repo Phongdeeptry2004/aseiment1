@@ -118,132 +118,12 @@ $result = getChapterBeforeAndAfter($values, $currentChapterId);
                     </div>
                 </header>
                 <ul id="chap_list" class="unstyled">
-                    <li class="current"><a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/t20918-vol-1">Vol
-                            1</a></li>
-                    <ul class="sub-chap_list unstyled">
                         <li>
                             <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113038-minh-hoa">
                                 <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
                                 Minh họa
                             </a>
                         </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113036-chuong-mo-dau">
-                                Chương mở đầu
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113037-chuong-01-day-mot-bai-hoc-tu-nu-hon-dau-phan-1">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 01: Dạy một bài học từ nụ hôn đầu (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113127-chuong-01-phan-2">
-                                Chương 01 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113417-chuong-02-man-kabedon-khien-tim-loan-nhip-phan-1">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 02: Màn Kabedon khiến tim loạn nhịp (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c113557-chuong-02-phan-2">
-                                Chương 02 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c114529-chuong-03-bai-hoc-tu-mot-tro-dua-phan-1">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 03: Bài học từ một trò đùa (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c114662-chuong-03-phan-2">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 03 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c115092-chuong-03-phan-3">
-                                Chương 03 (Phần 3)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c116060-chuong-04-tran-dau-bo3-tai-be-boi-phan-1">
-                                Chương 04: Trận đấu BO3 tại bể bơi (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c116306-chuong-04-phan-2">
-                                Chương 04 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c117417-chuong-04-phan-3">
-                                Chương 04 (Phần 3)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c117758-chuong-04-phan-4">
-                                Chương 04 (Phần 4)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c118276-chuong-05-nhung-khi-tuyet-vong-va-tinh-ban-bi-chia-cat-phan-1">
-                                Chương 05: Những khi tuyệt vọng và tình bạn bị chia cắt (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c118662-chuong-05-phan-2">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 05 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120211-chuong-06-ban-song-tau-piano-tinh-tu-phan-1">
-                                Chương 06: Bản song tấu piano tình tứ (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120270-chuong-06-phan-2">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 06 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120293-phu-chuong">
-                                Phụ chương
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120505-chuong-07">
-                                Chương 07: Buổi học nhóm tình tứ (Phần 1)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120585-chuong-07-phan-2">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 07 (Phần 2)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c120860-chuong-08-nu-hon-thu-hai-luc-nua-dem">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Chương 08: Nụ hôn thứ hai lúc nửa đêm
-                            </a>
-                        </li>
-                        <li class="current">
-                            <a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c121006-ngoai-truyen-bookwalker-neu-cau-bao-la-hop-voi-to">
-                                <i class="fas fa-picture-o" aria-hidden="true" title="Có chứa ảnh"></i>
-                                Ngoại truyện Bookwalker: Nếu cậu bảo là hợp với tớ...
-                            </a>
-                        </li>
-                    </ul>
-                    <li class><a href="/truyen/15056-kisu-nante-dekinai-deshoto-chouhatsu-suru-namaikina-osananajimi-wo-wakarasete-yattara-yosou-ijou-ni-dereta/c119148-minh-hoa">Vol
-                            2</a></li>
                 </ul>
             </main>
             <div class="black-click"></div>
@@ -338,10 +218,7 @@ $result = getChapterBeforeAndAfter($values, $currentChapterId);
                     <pre>
                     <div id="chapter-content" class="long-text no-select text-justify">
                         <?php
-
-
-                        echo nl2br($data['NoiDungChuong']);
-                        
+                        echo $data['NoiDungChuong'];
                         ?>
                     </div>
                 <section class="rd-basic_icon row">

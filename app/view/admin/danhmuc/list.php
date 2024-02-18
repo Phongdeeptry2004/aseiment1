@@ -22,7 +22,7 @@ if (isset($_COOKIE['Message'])) {
     <th>Tên Truyện</th>
     <th>Tên Danh Mục</th>
     <th>
-        <a href="<?php ROOT_PATH?>addcategory">Thêm Danh Mục</a>
+        <a href="<?=ROOT_PATH?>addcategory">Thêm Danh Mục</a>
     </th>
 </tr>
 <?php foreach ($data['danhmuc'] as $value) : ?>
