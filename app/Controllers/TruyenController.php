@@ -21,7 +21,6 @@ class TruyenController extends BaseController
     {
         $MaChuong = $_GET['ma-chuong'];
         $MaTruyen = ChuongModel::find("MaChuong", $MaChuong)->MaTruyen;
-        var_dump($MaTruyen);
         if (isset($_COOKIE['TaiKhoan'])) {
             $lichsu = new LichSuModel();
             $TaiKhoan = json_decode($_COOKIE["TaiKhoan"]);
@@ -31,22 +30,43 @@ class TruyenController extends BaseController
                 "MaTruyen" => $MaTruyen,
                 "ChapDocGanNhat" => $MaChuong
             ];
-            // var_dump($allLS);
             if ($allLS!=null) {
                 $lichsu->update($allLS[0]->MaLichSu,$data);
             } else {
                 $lichsu->add($data);
             }
-        } else {
-            if (isset($_COOKIE['lichsu'])) {
+        } 
+        if (isset($_COOKIE['lichsu'])) {
+            $existingData = json_decode($_COOKIE['lichsu'], true);
+    
+            if (isset($existingData[$MaTruyen])) {
+                // Nếu đã đọc truyện này trước đó, cập nhật thông tin
+                $existingData[$MaTruyen]['ChapDocGanNhat'] = $MaChuong;
+            } else {
+                // Nếu chưa đọc truyện này trước đó, thêm mới thông tin
+                $existingData[$MaTruyen] = [
+                    'MaTruyen' => $MaTruyen,
+                    'ChapDocGanNhat' => $MaChuong
+                ];
             }
-            $d = [
-                "MaTruyen" => $MaTruyen,
-                "ChapDocGanNhat" => $MaChuong
+    
+            $updatedData = json_encode($existingData);
+            setcookie('lichsu', $updatedData, time() + 360000);
+        } else {
+            // Nếu chưa có cookie lịch sử, tạo mới và thêm thông tin đầu tiên
+            $data = [
+                $MaTruyen => [
+                    'MaTruyen' => $MaTruyen,
+                    'ChapDocGanNhat' => $MaChuong
+                ]
             ];
-            $data = json_encode($d);
+    
+            $data = json_encode($data);
             setcookie('lichsu', $data, time() + 360000);
         }
+    }
+    public function getLS(){
+        
     }
     
 }

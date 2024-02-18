@@ -1,15 +1,11 @@
-<?php
-
+<?php 
 namespace App\Controllers;
 
-use App\Models\LichSuModel;
+use App\Models\ChuongModel;
 use App\Models\TruyenModel;
-
-class HomeController extends BaseController
-{
-    public function index()
-    {
-        $Truyen = TruyenModel::all();
+use App\Models\LichSuModel;
+Class LichSuController extends BaseController{
+    public function lichsu(){
         if (isset($_COOKIE['TaiKhoan'])) {
             setcookie('lichsu',"",time()-3600,'/');  // xóa cookie lịch sử truyện đã đọc khi vào tr
             $MaNguoiDung=json_decode($_COOKIE['TaiKhoan'])->MaNguoiDung;
@@ -39,15 +35,14 @@ class HomeController extends BaseController
         }else{
             $LsCookie="";
         }
-        $this->view("/view/headder", []);
-        $this->view("/view/noibat_thaoluan_lichsu", ['LsCookie'=>$LsCookie,'LsTK'=>$LSTK]);
-        $this->view("/view/moinhat_binhluan", ['Truyen'=>$Truyen,'LsCookie'=>$LsCookie,'LSTK'=>$LSTK]);
-        $this->view("/view/footer", []);
+        $this->view("/view/headder",[]);
+        $this->view("/view/user/lichsu/lichsu",['LsCookie'=>$LsCookie,'LSTK'=>$LSTK]);
+        $this->view("/view/footer",[]);
     }
-    public function adminIndex()
-    {
-        $this->view('/view/admin/layout/header', []);
-        $this->view('/view/admin/layout/home', []);
-        $this->view('/view/admin/layout/footer', []);
+    public static function xoa(){
+        $id=$_GET['id'];
+        LichSuModel::delete("MaLichSu",$id);
+        setcookie("Message","Xoá dữ liệu thành công",time()+1);
+        header('Location: '.ROOT_PATH .'lich-su-doc');
     }
 }

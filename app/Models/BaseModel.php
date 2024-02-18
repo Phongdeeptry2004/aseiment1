@@ -156,6 +156,16 @@ class BaseModel
         $stmt->execute(['idtruyen'=>$idtruyen]);
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
+    public static function demchuong($MaNguoiDang){
+        $model = new static;
+        $model->sqlBuilder = "SELECT *,COUNT(`MaTruyen`) AS SoTruyen
+        FROM `truyen` WHERE MaNguoiDang=:MaNguoiDang";
+        //chuan bi
+        $stmt = $model->conn->prepare($model->sqlBuilder);
+        //thuc thi
+        $stmt->execute(['MaNguoiDang'=>$MaNguoiDang]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
     /*
     Method  update : dungf ddeer caapj nhaatj duwx lieeuj 
     $id : Giá trị của khoá chính 

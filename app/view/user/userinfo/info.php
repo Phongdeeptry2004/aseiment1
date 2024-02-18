@@ -1,7 +1,10 @@
-<html lang="vi" class="dark">
 <?php
+
+use App\Models\TruyenModel;
+
+$truyendadang = new TruyenModel();
 extract($data);
-var_dump($ThongTin);
+$sotruyen = $truyendadang->demchuong($ThongTin->MaNguoiDung);
 ?>
 <main id="mainpart" class="profile-page">
     <div class="profile-feature-wrapper">
@@ -23,9 +26,6 @@ var_dump($ThongTin);
                 <div class="profile-nav">
                     <div class="profile-ava-wrapper">
                         <div class="profile-ava">
-                            <div id="profile-changer_ava" class="profile-changer">
-                                <span class="p-c_text"><i class="fas fa-camera"></i></span>
-                            </div>
                             <img src="<?= ROOT_PATH ?>img/<?= $ThongTin->Avatar ? $ThongTin->Avatar : 'noava.png' ?>">
                         </div>
                     </div>
@@ -35,7 +35,7 @@ var_dump($ThongTin);
                     <div class="profile-intro">
 
                         <h3 class="profile-intro_name text-lg font-bold ">
-                            <?=  $ThongTin->TenDangNhap ?>
+                            <?= $ThongTin->TenDangNhap ?>
                         </h3>
                         <div class="flex flex-wrap gap-x-2 gap-y-2 align-middle pt-1 justify-center md:justify-start">
                         </div>
@@ -79,37 +79,70 @@ var_dump($ThongTin);
                     <ul class="statistic-top row">
                         <li class="col-6">
                             <div class="statistic-value">
-                                0
+                                <?= $sotruyen[0]->SoTruyen ?>
                             </div>
-                            <div class="statistic-name">Chương đã đăng</div>
+                            <div class="statistic-name">Truyện đã đăng</div>
                         </li>
-                        <li class="col-6">
+                        <!-- <li class="col-6">
                             <div class="statistic-value">0</div>
                             <div class="statistic-name">Đang theo dõi</div>
-                        </li>
-                        <li class="col-12 mt-2">
+                        </li> -->
+                        <li class="col-6">
                             <div class="statistic-value"><a href="<?= ROOT_PATH ?>/lich-su-binh-luan">0</a></div>
                             <div class="statistic-name">Bình luận</div>
                         </li>
                     </ul>
-                    <main class="sect-body">
+                    <!-- <main class="sect-body">
                         <div class="profile-info-item">
-                            <span class="info-name"><i class="fas fa-calendar"></i> Tham gia: </span><span class="info-value">22/01/2024</span>
+                            <span class="info-name"><i class="fas fa-calendar"></i> Tham gia: </span><span class="info-value"></span>
                         </div>
-                    </main>
+                    </main> -->
                 </section>
             </div>
             <div class="col-12 col-md-12 col-lg-9 col-xl-9">
                 <section class="profile-showcase">
-                    <header><span class="number">0</span><span class="showcase-title">Truyện đã đăng</span></header>
+                    <header><span class="number"><?=$sotruyen[0]->SoTruyen?></span><span class="showcase-title">Truyện đã đăng</span></header>
                     <div class="row">
-                        <span>Không có truyện nào</span>
-                    </div>
-                </section>
-                <section class="profile-showcase">
-                    <header><span class="number">0</span><span class="showcase-title">Truyện đang tham gia</span></header>
-                    <div class="row">
-                        <span>Không có truyện nào</span>
+                        <?php 
+                        $alltruyen = TruyenModel::find("MaNguoiDang", $ThongTin->MaNguoiDung);
+
+                        foreach ($alltruyen as $key) :
+                            $ngaycapnhat = date('Y-m-d\TH:i:sP', strtotime($key->ThoiDiemTao))
+                        ?>
+
+                            <div class="col-12 col-md-6">
+                                <div class="showcase-item">
+                                    <div class="row">
+                                        <div class="series-cover col-4">
+                                            <div class="a6-ratio">
+                                                <div class="content img-in-ratio" style="background-image: url('<?= ROOT_PATH ?>img/<?= $key->img ?>')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="series-info">
+                                                <div class="series-type-wrapper">
+                                                    <small class="series-type type-translation">Truyện dịch</small>
+                                                </div>
+                                                <h5 class="series-name text-base font-bold"><a href="<?=ROOT_PATH?>truyen?id=<?=$key->MaTruyen?>"><?= $key->TieuDe ?></a>
+                                                </h5>
+                                            </div>
+                                            <div class="series-status">
+                                                <div class="status-item">
+                                                    <span class="status-name">Tình trạng:</span>
+                                                    <span class="status-value"><?= $key->TinhTrangDich ?></span>
+                                                </div>
+                                                <div class="status-item">
+                                                    <span class="status-name">Lần cuối:</span>
+                                                    <span class="status-value"><time class="timeago" title="<?= $key->ThoiDiemTao ?>" datetime="<?= $ngaycapnhat ?>"></time>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
                     </div>
                 </section>
             </div>

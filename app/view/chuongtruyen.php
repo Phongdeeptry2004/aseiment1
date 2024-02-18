@@ -218,10 +218,7 @@ $result = getChapterBeforeAndAfter($values, $currentChapterId);
                     <pre>
                     <div id="chapter-content" class="long-text no-select text-justify">
                         <?php
-
-
-                        echo nl2br($data['NoiDungChuong']);
-                        var_dump($_COOKIE['lichsu']);
+                        echo $data['NoiDungChuong'];
                         ?>
                     </div>
                 <section class="rd-basic_icon row">

@@ -15,21 +15,21 @@
                     use App\Models\TruyenModel;
 
                     $t = new TruyenModel();
-                    $Truyen = $t->where("LuotXem",">=","100")->andOderbyDESClimit("LuotXem",8)->get();
+                    $Truyen = $t->where("LuotXem", ">=", "100")->andOderbyDESClimit("LuotXem", 8)->get();
                     // $Truyen=$t->all();
                     foreach ($Truyen as $item) :
                     ?>
                         <div class="popular-thumb-item mr-1">
                             <div class="thumb-wrapper">
-                                <a href="<?php ROOT_PATH?>truyen?id=<?php echo $item->MaTruyen ?>" title="Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~">
+                                <a href="<?php ROOT_PATH ?>truyen?id=<?php echo $item->MaTruyen ?>" title="Bạn thuở nhỏ trở thành thần tượng nổi tiếng ~ Những cô gái dễ thương đang hỗ trợ tôi ~">
                                     <div class="a6-ratio">
                                         <div class="content img-in-ratio" style="background-image: url('img/<?php echo $item->img ?>')">
                                         </div>
                                     </div>
                                 </a>
                                 <div class="thumb-detail">
-                                    <div class="thumb_attr series-title" title="<?php echo $item->TieuDe?>">
-                                        <a href="<?php ROOT_PATH?>truyen?id=<?php echo $item->MaTruyen ?>" title="<?php echo $item->TieuDe?>"><?php echo $item->TieuDe?></a>
+                                    <div class="thumb_attr series-title" title="<?php echo $item->TieuDe ?>">
+                                        <a href="<?php ROOT_PATH ?>truyen?id=<?php echo $item->MaTruyen ?>" title="<?php echo $item->TieuDe ?>"><?php echo $item->TieuDe ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -166,23 +166,42 @@
             <div class="d-lg-none" style="margin-top: 20px">
                 <section id="reading-history" class="index-section" x-data="{ storage: (JSON.parse(localStorage.getItem('reading_series')) || []).slice(0,4) }">
                     <header class="section-title">
-                        <a href="https://docln.net/lich-su-doc">
+                        <a href="<?= ROOT_PATH ?>lich-su-doc">
                             <span class="sts-bold">Truyện</span><span class="sts-empty">vừa đọc</span>
                         </a>
                     </header>
                     <main class="sect-body">
-                        <template x-for="reading in storage">
-                            <div class="row ml-1 mb-3">
-                                <div class="col-2 col-md-1 col-lg-2 a6-ratio">
-                                    <div class="img-contain-ratio content" :style="{ backgroundImage: reading.series_cover }"></div>
-                                </div>
-                                <div class="col-8 col-md-9 col-lg-8">
-                                    <a x-text="reading.series_title" :href="reading.series_url" class="text-truncate block font-weight-bold"></a>
-                                    <div x-text="reading.book_title" class="small mb-3 text-truncate"></div>
-                                    <a x-text="reading.chapter_title" :href="reading.chapter_url" class="text-truncate block"></a>
-                                </div>
-                            </div>
-                        </template>
+                        <?php
+                        extract($data);
+                        if (isset($_COOKIE['TaiKhoan'])) {
+                            foreach ($LSTK as $item) {
+                                echo '<div class="row ml-1 mb-3">
+                                        <div class="col-2 col-md-1 col-lg-2 a6-ratio">
+                                            <div class="img-contain-ratio content" style="background-image: url('.ROOT_PATH.'img/' . $item["img"] . ');"></div>
+                                        </div>
+                                        <div class="col-8 col-md-9 col-lg-8">
+                                            <a class="text-truncate block font-weight-bold" href="' . ROOT_PATH . 'truyen?id=' . $item["MaTruyen"] . '">' . $item["TieuDe"] . '</a>
+                                            <div class="small mb-3 text-truncate">' . $item["TieuDeChuong"] . '</div>
+                                            <a class="text-truncate block" href="' . ROOT_PATH . 'chuong?ma-chuong=' . $item['ChapDocGanNhat'] . '">Chapter ' . $item["ChapDocGanNhat"] . '</a>
+                                        </div>
+                                    </div>';
+                            }
+                        }elseif (isset($_COOKIE['lichsu'])) {
+                            foreach ($LsCookie as $item) {
+                                echo '<div class="row ml-1 mb-3">
+                                        <div class="col-2 col-md-1 col-lg-2 a6-ratio">
+                                            <div class="img-contain-ratio content" style="background-image: url(img/'.$item["img"] . ');"></div>
+                                        </div>
+                                        <div class="col-8 col-md-9 col-lg-8">
+                                            <a class="text-truncate block font-weight-bold" href="' . ROOT_PATH . 'truyen?id=' . $item["MaTruyen"] . '">' . $item["TieuDe"] . '</a>
+                                            <div class="small mb-3 text-truncate">' . $item["TieuDeChuong"] . '</div>
+                                            <a class="text-truncate block" href="' . ROOT_PATH . 'chuong?ma-chuong=' . $item['MaChuong'] . '">' . $item["TieuDeChuong"] . '</a>
+                                        </div>
+                                    </div>';
+                            }
+                            
+                        }
+                        ?>
                     </main>
                 </section>
             </div>

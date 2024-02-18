@@ -88,10 +88,11 @@
                             <li>
                                 <a href="<?= ROOT_PATH ?>thanh-vien?id=<?= $tk->MaNguoiDung ?>"><i class="fas fa-user"></i><span>Tài khoản</span></a>
                             </li>
-                            <!-- <li>
-                                <a href="/lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
-                            </li> 
                             <li>
+                                <a href="<?= ROOT_PATH ?>lich-su-doc"><i class="fas fa-history"></i><span>Lịch sử</span></a>
+                            </li>
+
+                            <!-- <li>
                                 <a href="/bookmark"><i class="fas fa-bookmark"></i><span>Đánh dấu</span></a>
                             </li>
                             <li>
@@ -111,7 +112,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="<?= ROOT_PATH ?>action"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
+                                <a href="<?= ROOT_PATH ?>admin"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
                             </li>
                             <li>
                                 <a href="<?= ROOT_PATH ?>logout"><i class="fas fa-sign-out-alt"></i><span>Thoát</span></a>
@@ -175,11 +176,5 @@
 
         </div>
     </div>
-    <div class="page-top-group  at-index ">
-        <!-- <a href="/thao-luan/2591">
-            <div class="index-background d-none d-lg-block" style="background-image: url('/images/banners/fbg_d.jpg')">
-            </div>
-            <div class="index-background d-lg-none" style="background-image: url('/images/banners/fbg_m.jpg'); background-size: cover"></div>
-        </a> -->
-    </div>
+
     <main id="mainpart" class="at-index">

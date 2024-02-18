@@ -8,6 +8,8 @@ Class ChuongController extends BaseController{
         
         $idchuong=$_GET['ma-chuong'];
         // echo $idtruyen;
+        $lichsu=new TruyenController();
+        $lichsu->LichSu();
         $data=ChuongModel::find('MaChuong',$idchuong);
         $this->view("/view/chuongtruyen",(array)$data);
         $this->view("/view/footer",[]);

@@ -8,6 +8,7 @@ use App\Controllers\BaseController;
 use App\Controllers\CategoryController;
 use App\Controllers\ChuongController;
 use App\Controllers\HomeController;
+use App\Controllers\LichSuController;
 use App\Controllers\ListController;
 use App\Controllers\TaiKhoanController;
 use App\Controllers\TruyenController;
@@ -24,7 +25,7 @@ $router = new Router();
 Router::get("/home",[HomeController::class,'index']);
 Router::get("/",[HomeController::class,'index']);
 Router::get("/truyen",[TruyenController::class,'gioithieutruyen']);
-Router::get("/chuong",[TruyenController::class,'LichSu']);
+// Router::get("/chuong",[TruyenController::class,'LichSu']);
 Router::get("/chuong",[ChuongController::class,'Chuong']);
 Router::get("/sang-tac",[ListController::class,'List']);
 Router::get("/danh-sach",[ListController::class,'List']);
@@ -57,6 +58,9 @@ Router::post("/login",[TaiKhoanController::class,"Login"]);
 Router::get("/register",[TaiKhoanController::class,"FromRegister"]);
 Router::post("/register",[TaiKhoanController::class,"Register"]);
 Router::get("/logout",[TaiKhoanController::class,"logout"]);
+//Lịch sử
+Router::get("/lich-su-doc",[LichSuController::class,"lichsu"]);
+Router::get("/xoa-lich-su",[LichSuController::class,"xoa"]);
 
 
 Router::get("/thanh-vien",[TaiKhoanController::class,"info"]);
