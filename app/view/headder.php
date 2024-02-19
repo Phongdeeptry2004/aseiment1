@@ -109,7 +109,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="<?=ROOT_PATH?>admin"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
+                                <a href="<?=ROOT_PATH?><?php if($tk->Role=='admin'){echo 'admin';}else{echo'action';} ?>"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
                             </li>
                             <li>
                                 <a href="<?=ROOT_PATH?>logout"><i class="fas fa-sign-out-alt"></i><span>Thoát</span></a>
@@ -181,9 +181,8 @@
         </a>
     </div>
     <main id="mainpart" class="at-index">
-
         <div class="container" style="margin-bottom: 40px;">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="no-push col-12 push-2-l col-8-l">
                     <div id="announcements" class="index-top_notification">
                         <div class="annoucement-item">
@@ -213,5 +212,5 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- end header -->

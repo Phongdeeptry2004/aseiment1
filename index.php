@@ -26,7 +26,7 @@ Router::get("/home",[HomeController::class,'index']);
 Router::get("/",[HomeController::class,'index']);
 Router::get("/truyen",[TruyenController::class,'gioithieutruyen']);
 // Router::get("/chuong",[TruyenController::class,'LichSu']);
-Router::get("/chuong",[ChuongController::class,'Chuong']);
+Router::get("/chuong",[ChuongController::class,'GetChuong']);
 Router::get("/sang-tac",[ListController::class,'List']);
 Router::get("/danh-sach",[ListController::class,'List']);
 //admin
@@ -61,7 +61,21 @@ Router::get("/logout",[TaiKhoanController::class,"logout"]);
 //Lịch sử
 Router::get("/lich-su-doc",[LichSuController::class,"lichsu"]);
 Router::get("/xoa-lich-su",[LichSuController::class,"xoa"]);
-
+// action user :
+Router::get("/action",[HomeController::class,"action"]);
+Router::get("/action/list",[TruyenController::class,"listtruyen"]);
+Router::get("/action/tai-khoan",[UserController::class,"action"]);
+Router::get("/action/addtruyen",[TruyenController::class,'create']);
+Router::post("/action/addtruyen",[TruyenController::class,'store']);
+Router::get("/action/edittruyen",[TruyenController::class,'edit']);
+Router::post("/action/edittruyen",[TruyenController::class,'update']);
+Router::get("/action/deletetruyen",[TruyenController::class,'delete']);
+Router::get("/action/chuongtruyen",[ChuongController::class,'listchuong']);
+Router::get("/action/chuongtruyen/add",[ChuongController::class,'themchuong']);
+Router::post("/action/chuongtruyen/add",[ChuongController::class,'them']);
+Router::get("/action/chuongtruyen/delete",[ChuongController::class,'xoa']);
+Router::get("/action/chuongtruyen/update",[ChuongController::class,'sua']);
+Router::post("/action/chuongtruyen/update",[ChuongController::class,'update']);
 
 Router::get("/thanh-vien",[TaiKhoanController::class,"info"]);
 

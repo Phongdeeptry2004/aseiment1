@@ -1,10 +1,12 @@
-<div class="container">
+ <?php $TT=json_decode($_COOKIE['TaiKhoan']); 
+ ?>
+ <div class="container">
      <div class="row">
          <div class="col-md-10 col-md-offset-1">
              <div class="panel panel-default">
                  <div class="panel-heading">Series</div>
                  <div class="panel-body">
-                     <form method="post" action="<?= ROOT_PATH ?>admin/addtruyen" enctype="multipart/form-data">
+                     <form method="post" action="<?= ROOT_PATH ?>action/addtruyen" enctype="multipart/form-data">
                          <input type="hidden" name="MaNguoiDang" value='<?=$TT->MaNguoiDung?>'>
                          <div class="form-group clearfix required">
                              <label class="col-md-2 control-label pt-7 text-right">Tiêu đề</label>

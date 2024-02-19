@@ -50,4 +50,9 @@ class HomeController extends BaseController
         $this->view('/view/admin/layout/home', []);
         $this->view('/view/admin/layout/footer', []);
     }
+    public function action(){
+        $this->view("/view/user/layout/header", []);
+        $this->view('/view/user/taikhoan/action', []);
+        $this->view("/view/user/layout/footer", []);
+    }
 }

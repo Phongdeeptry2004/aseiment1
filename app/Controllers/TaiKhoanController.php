@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\TaiKhoanModel;
+use App\Models\TruyenModel;
 
 class TaiKhoanController extends BaseController
 {
@@ -108,8 +109,9 @@ class TaiKhoanController extends BaseController
         $MND = $_GET['id'];
         $userinfo = TaiKhoanModel::find("MaNguoiDung", $MND);
         var_dump($userinfo);
+        $listTruyen=TruyenModel::find("MaNguoiDang",$userinfo->MaNguoiDung);
         $this->view("/view/header_nobanner", []);
-        $this->view('view/user/userinfo/info', ["ThongTin" => $userinfo]);
+        $this->view('view/user/userinfo/info', ["ThongTin" => $userinfo,"Truyen"=>$listTruyen]);
         $this->view("/view/footer", []);
     }
 }

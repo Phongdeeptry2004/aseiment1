@@ -1,4 +1,3 @@
-
 <?php
 // Check if there is a deletion message cookie
 if (isset($_COOKIE['Message'])) {
@@ -18,28 +17,26 @@ if (isset($_COOKIE['Message'])) {
           </script>';
 }
 ?>
-<table class="table" border="1">
+<table border="1" class="table">
 <tr>
-    <th>Mã Truyện</th>
     <th>Tên Truyện</th>
-    <th>Hình ảnh </th>
+    <th>Tên Danh Mục</th>
     <th>
-        <a href="<?=ROOT_PATH?>action/addtruyen">Thêm Truyện</a>
+        <a href="<?php ROOT_PATH?>addcategory">Thêm Danh Mục</a>
     </th>
 </tr>
-<?php foreach ($data as $value) : ?>
+<?php foreach ($data['danhmuc'] as $value) : ?>
     <tr>
-        <td><?= $value->MaTruyen ?></td>
         <td><?= $value->TieuDe ?></td>
-        <td><img src="<?=ROOT_PATH?>img/<?= $value->img ?>" width="60px" alt=""></td>
-        <td><a href="<?=ROOT_PATH?>action/edittruyen?id=<?=$value->MaTruyen?>">Sửa</a></td>
-        <td><a href="<?=ROOT_PATH?>action/deletetruyen?id=<?=$value->MaTruyen?>"onclick="return confirmDelete()">Xoá</a></td>
-        <td><a href="<?=ROOT_PATH?>action/chuongtruyen?id=<?=$value->MaTruyen?>">Chi Tiết</a></td>
+        <td><?= $value->TenDanhMuc ?></td>
+        <td><a href="<?=ROOT_PATH?>admin/editcategory?id=<?=$value->MaDanhMuc?>">Sửa</a></td>
+        <td><a href="<?=ROOT_PATH?>admin/deletecategory?id=<?=$value->MaDanhMuc?>"  onclick="return confirmDelete()">Xoá</a></td>
     </tr>
+
 <?php endforeach ?>
 </table>
 <script>
     function confirmDelete() {
-        return confirm("Bạn có chắc chắn muốn xoá truyện này này?");
+        return confirm("Bạn có chắc chắn muốn xoá người dùng này?");
     }
 </script>

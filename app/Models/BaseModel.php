@@ -156,7 +156,7 @@ class BaseModel
         $stmt->execute(['idtruyen'=>$idtruyen]);
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
-    public static function demchuong($MaNguoiDang){
+    public static function demTruyen($MaNguoiDang){
         $model = new static;
         $model->sqlBuilder = "SELECT *,COUNT(`MaTruyen`) AS SoTruyen
         FROM `truyen` WHERE MaNguoiDang=:MaNguoiDang";

@@ -112,7 +112,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="<?= ROOT_PATH ?>admin"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
+                                <a href="<?= ROOT_PATH ?><?php if($tk->Role=='admin'){echo 'admin';}else{echo'action';} ?>"><i class="fas fa-cog"></i><span>Hệ thống</span></a>
                             </li>
                             <li>
                                 <a href="<?= ROOT_PATH ?>logout"><i class="fas fa-sign-out-alt"></i><span>Thoát</span></a>

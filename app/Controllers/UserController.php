@@ -38,8 +38,10 @@ class UserController extends BaseController
     {
         $ma = $_GET["id"];
         $user = UserModel::find("MaNguoiDung", $ma);
+        $id=json_decode($_COOKIE['TaiKhoan'])->MaNguoiDung;
+        $listTruyen=TruyenModel::find("MaNguoiDang",$id);
         $this->view("/view/admin/layout/header", []);
-        $this->view('/view/admin/nguoidung/edit', ['user' => $user]);
+        $this->view('/view/admin/nguoidung/edit', ['user' => $user,"Truyen"=>$listTruyen]);
         $this->view("/view/admin/layout/footer", []);
     }
     public function update()
@@ -63,4 +65,5 @@ class UserController extends BaseController
         setcookie("Message", "Xoá dữ liệu thành công", time() + 1);
         header('Location: ' . ROOT_PATH . 'admin/user');
     }
+
 }

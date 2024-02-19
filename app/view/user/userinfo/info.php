@@ -2,9 +2,8 @@
 
 use App\Models\TruyenModel;
 
-$truyendadang = new TruyenModel();
 extract($data);
-$sotruyen = $truyendadang->demchuong($ThongTin->MaNguoiDung);
+$sotruyen = TruyenModel::demTruyen($ThongTin->MaNguoiDung);
 ?>
 <main id="mainpart" class="profile-page">
     <div class="profile-feature-wrapper">
@@ -101,48 +100,90 @@ $sotruyen = $truyendadang->demchuong($ThongTin->MaNguoiDung);
             </div>
             <div class="col-12 col-md-12 col-lg-9 col-xl-9">
                 <section class="profile-showcase">
-                    <header><span class="number"><?=$sotruyen[0]->SoTruyen?></span><span class="showcase-title">Truyện đã đăng</span></header>
+                    <header><span class="number"><?= $sotruyen[0]->SoTruyen ?></span><span class="showcase-title">Truyện đã đăng</span></header>
                     <div class="row">
-                        <?php 
-                        $alltruyen = TruyenModel::find("MaNguoiDang", $ThongTin->MaNguoiDung);
-
-                        foreach ($alltruyen as $key) :
-                            $ngaycapnhat = date('Y-m-d\TH:i:sP', strtotime($key->ThoiDiemTao))
+                        <?php
+                        if ($sotruyen[0]->SoTruyen === '1') {
+                            extract($data);
+                            $t = array($Truyen);
+                            foreach ($t as $truyenItem) :
+                                $ngaycapnhat = date('Y-m-d\TH:i:sP', strtotime($truyenItem->ThoiDiemTao))
                         ?>
 
-                            <div class="col-12 col-md-6">
-                                <div class="showcase-item">
-                                    <div class="row">
-                                        <div class="series-cover col-4">
-                                            <div class="a6-ratio">
-                                                <div class="content img-in-ratio" style="background-image: url('<?= ROOT_PATH ?>img/<?= $key->img ?>')">
+                                <div class="col-12 col-md-6">
+                                    <div class="showcase-item">
+                                        <div class="row">
+                                            <div class="series-cover col-4">
+                                                <div class="a6-ratio">
+                                                    <div class="content img-in-ratio" style="background-image: url('<?= ROOT_PATH ?>img/<?= $truyenItem->img ?>')">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="series-info">
-                                                <div class="series-type-wrapper">
-                                                    <small class="series-type type-translation">Truyện dịch</small>
+                                            <div class="col-8">
+                                                <div class="series-info">
+                                                    <div class="series-type-wrapper">
+                                                        <small class="series-type type-translation">Truyện dịch</small>
+                                                    </div>
+                                                    <h5 class="series-name text-base font-bold"><a href="<?= ROOT_PATH ?>truyen?id=<?= $truyenItem->MaTruyen ?>"><?= $truyenItem->TieuDe ?></a>
+                                                    </h5>
                                                 </div>
-                                                <h5 class="series-name text-base font-bold"><a href="<?=ROOT_PATH?>truyen?id=<?=$key->MaTruyen?>"><?= $key->TieuDe ?></a>
-                                                </h5>
-                                            </div>
-                                            <div class="series-status">
-                                                <div class="status-item">
-                                                    <span class="status-name">Tình trạng:</span>
-                                                    <span class="status-value"><?= $key->TinhTrangDich ?></span>
-                                                </div>
-                                                <div class="status-item">
-                                                    <span class="status-name">Lần cuối:</span>
-                                                    <span class="status-value"><time class="timeago" title="<?= $key->ThoiDiemTao ?>" datetime="<?= $ngaycapnhat ?>"></time>
-                                                    </span>
+                                                <div class="series-status">
+                                                    <div class="status-item">
+                                                        <span class="status-name">Tình trạng:</span>
+                                                        <span class="status-value"><?= $truyenItem->TinhTrangDich ?></span>
+                                                    </div>
+                                                    <div class="status-item">
+                                                        <span class="status-name">Lần cuối:</span>
+                                                        <span class="status-value"><time class="timeago" title="<?= $truyenItem->ThoiDiemTao ?>" datetime="<?= $ngaycapnhat ?>"></time>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endforeach ?>
+                            <?php endforeach;
+                        } elseif ($sotruyen[0]->SoTruyen > 1) { // Nếu mảng chứa nhiều truyện
+                            foreach ($data['Truyen'] as $truyenItem) :
+                                $ngaycapnhat = date('Y-m-d\TH:i:sP', strtotime($truyenItem->ThoiDiemTao))
+                            ?>
+                                <div class="col-12 col-md-6">
+                                    <div class="showcase-item">
+                                        <div class="row">
+                                            <div class="series-cover col-4">
+                                                <div class="a6-ratio">
+                                                    <div class="content img-in-ratio" style="background-image: url('<?= ROOT_PATH ?>img/<?= $truyenItem->img ?>')">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="series-info">
+                                                    <div class="series-type-wrapper">
+                                                        <small class="series-type type-translation">Truyện dịch</small>
+                                                    </div>
+                                                    <h5 class="series-name text-base font-bold"><a href="<?= ROOT_PATH ?>truyen?id=<?= $truyenItem->MaTruyen ?>"><?= $truyenItem->TieuDe ?></a>
+                                                    </h5>
+                                                </div>
+                                                <div class="series-status">
+                                                    <div class="status-item">
+                                                        <span class="status-name">Tình trạng:</span>
+                                                        <span class="status-value"><?= $truyenItem->TinhTrangDich ?></span>
+                                                    </div>
+                                                    <div class="status-item">
+                                                        <span class="status-name">Lần cuối:</span>
+                                                        <span class="status-value"><time class="timeago" title="<?= $truyenItem->ThoiDiemTao ?>" datetime="<?= $ngaycapnhat ?>"></time>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <?php
+                            endforeach;
+                        }
+                        ?>
                     </div>
                 </section>
             </div>

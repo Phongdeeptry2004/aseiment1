@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\ChuongModel;
 use App\Models\LichSuModel;
 use App\Models\TruyenModel;
+use App\Models\DanhmucModel;
+
 
 class TruyenController extends BaseController
 {
@@ -13,7 +15,7 @@ class TruyenController extends BaseController
         $idtruyen = $_GET['id'];
         // echo $idtruyen;
         $data = TruyenModel::find('MaTruyen', $idtruyen);
-        $this->view("/view/header_nobanner", []);
+        $this->view("/view/headder", []);
         $this->view("/view/gioithieutruyen", (array)$data);
         $this->view("/view/footer", []);
     }
@@ -65,8 +67,74 @@ class TruyenController extends BaseController
             setcookie('lichsu', $data, time() + 360000);
         }
     }
-    public function getLS(){
-        
+    public function listtruyen(){
+        $id=json_decode($_COOKIE['TaiKhoan'])->MaNguoiDung;
+        $listTruyen=TruyenModel::find("MaNguoiDang",$id);
+        $this->view("/view/user/layout/header", []);
+        $this->view('/view/user/taikhoan/truyen/list', ["Truyen"=>$listTruyen]);
+        $this->view("/view/user/layout/footer", []);
+    }
+    public function List(){
+        if(isset($_GET['id'])){
+            $id=$_GET['id'];
+            $Truyen =TruyenModel::find("MaDanhMuc",$id);
+            $message=$_COOKIE['message']??"";
+        }else{
+            $Truyen=TruyenModel::all();
+            $message=$_COOKIE['message']??"";
+        }
+        $data=(array)$Truyen;
+        $this->view("/view/headder",[]);
+        $this->view("/view/list",(array)$Truyen);
+        $this->view("/view/footer",[]);
+    }
+    public function create(){
+        $theloai=DanhmucModel::all();
+        $this->view("/view/user/layout/header",[]);
+        $this->view("/view/user/taikhoan/truyen/add",(array)$theloai);
+        $this->view("/view/admin/layout/footer",[]);
+    
+    }
+    public function store(){
+        $data=$_POST;
+        $file=$_FILES['img'];
+        $image="path/".$file['name'];        
+        move_uploaded_file($file['tmp_name'], "img/".$image);
+        $data['img']=$image;
+        $truyen= new TruyenModel();
+        $truyen->add($data);
+        header('Location: '.ROOT_PATH .'action/list');
+        die;
+    }
+    //form sửa truyen
+    public function edit(){
+        $ma=$_GET["id"];
+        $truyen=TruyenModel::find("MaTruyen",$ma);
+        $theloai=DanhmucModel::all();
+        $this->view("/view/user/layout/header",[]);
+        $this->view('/view/user/taikhoan/truyen/edit',['truyen'=>$truyen,"DanhMuc"=>$theloai]);
+        $this->view("/view/user/layout/footer",[]);
+
+    }
+    public function update(){
+        $data=$_POST;
+        $file=$_FILES['img'];
+        if($file['size']>0){
+            $image="path/".$file['name'];
+            move_uploaded_file($file['tmp_name'], "img/".$image);
+            $data['img']=$image;
+        }  
+        $truyen= new TruyenModel();
+        $truyen->update($data['MaTruyen'],$data);
+        header('Location: '.ROOT_PATH .'action/edittruyen?id='.$data['MaTruyen']);
+        die();
+    }
+    public function delete(){
+        $id=$_GET['id'];
+        TruyenModel::delete("MaTruyen",$id);
+        setcookie("Message","Xoá dữ liệu thành công",time()+1);
+        header('Location: '.ROOT_PATH .'admin/list');
+
     }
     
 }
